@@ -9,4 +9,4 @@ endif()
 
 ADD_SUBDIRECTORY(googletest)
 ADD_SUBDIRECTORY(livehacking)
-ADD_SUBDIRECTORY(tests)
+ADD_SUBDIRECTORY(students)
