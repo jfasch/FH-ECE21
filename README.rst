@@ -9,7 +9,7 @@ Checkout and Initialization
 
 .. code-block:: console
 
-   $ cd ~                            # or wherever you like
+   $ cd ~                            # <--- or wherever you like
    $ git clone https://github.com/jfasch/FH-ECE21.git
    $ cd ~/FH-ECE21
    $ git submodule init
@@ -22,7 +22,7 @@ Create build directory for Intel architecture (``x86_64``)
 
 .. code-block:: console
 
-   $ mkdir ~/FH-ECE21-x86_64      # or wherever you like
+   $ mkdir ~/FH-ECE21-x86_64         # <--- or wherever you like
    $ cd ~/FH-ECE21-x86_64
    $ cmake ~/FH-ECE21
    $ make
@@ -31,6 +31,9 @@ Test
 ----
 
 .. code-block:: console
+
+   $ pwd
+   /home/jfasch/FH-ECE21-x86_64      # <--- or whatever you have chosen
 
    $ ./students/firstname.lastname/bin/my-first-program-firstname.lastname 
    The answer is: 666
