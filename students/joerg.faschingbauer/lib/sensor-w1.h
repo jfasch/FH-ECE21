@@ -1,7 +1,9 @@
 #pragma once
 
 #include <string>
+#include <cassert>
 #include <fcntl.h>
+#include <unistd.h>
 
 
 class W1Sensor

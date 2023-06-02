@@ -74,3 +74,14 @@ TEST_F(w1_sensor_suite, no_decimal_places_lost)
     temperature = sensor.get_temperature();
     ASSERT_FLOAT_EQ(temperature, 42.666);
 }
+
+TEST_F(w1_sensor_suite, jessas)
+{
+    // echo 666.42 > /tmp/meine-temp 
+
+        // leads to:
+
+        // 0.666
+
+    FAIL();
+}    
