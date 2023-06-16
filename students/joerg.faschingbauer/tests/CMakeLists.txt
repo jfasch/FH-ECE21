@@ -2,6 +2,7 @@ ADD_EXECUTABLE(
   test-suite-joerg.faschingbauer
 
   sensor-w1-suite.cpp
+  sensor-random-suite-basic.cpp
   )
 
 TARGET_LINK_LIBRARIES(

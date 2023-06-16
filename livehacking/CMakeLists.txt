@@ -4,5 +4,7 @@ ADD_EXECUTABLE(arrays arrays.cpp)
 ADD_EXECUTABLE(strings strings.cpp)
 ADD_EXECUTABLE(point point.cpp)
 ADD_EXECUTABLE(filesystem filesystem.cpp)
+ADD_EXECUTABLE(const-and-refs const-and-refs.cpp)
+ADD_EXECUTABLE(member-initialization member-initialization.cpp)
 
 ADD_SUBDIRECTORY(unittesting)
