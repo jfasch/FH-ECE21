@@ -1,8 +1,17 @@
 ADD_LIBRARY(
   fh-ece21-toolcase
 
-  sensor-mock-nopoly.h
-  sensor-mock-nopoly.cpp
+  sensor-const.h
+  sensor-const.cpp
+  sensor-mock.h
+  sensor-mock.cpp
+  sensor-random.h
+  sensor-random.cpp
+
+  sensor-avg.h
+  sensor-avg.cpp
+
+  sensor-w1.h
 )
 
 TARGET_INCLUDE_DIRECTORIES(

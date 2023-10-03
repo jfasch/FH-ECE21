@@ -3,9 +3,6 @@ ADD_LIBRARY(
 
   my-first-code.h
   my-first-code.c
-
-  sensor-avg-nopoly.h
-  sensor-avg-nopoly.cpp
 )
 
 TARGET_INCLUDE_DIRECTORIES(

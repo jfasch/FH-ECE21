@@ -8,8 +8,8 @@ if (${CMAKE_COMPILER_IS_GNUCC})
 endif()
 
 ADD_SUBDIRECTORY(googletest)
-ADD_SUBDIRECTORY(livehacking)
-ADD_SUBDIRECTORY(students)
-
 ADD_SUBDIRECTORY(toolcase)
 ADD_SUBDIRECTORY(tests)
+
+ADD_SUBDIRECTORY(livehacking)
+ADD_SUBDIRECTORY(ss2023/students)

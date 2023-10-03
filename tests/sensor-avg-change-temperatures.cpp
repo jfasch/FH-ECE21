@@ -1,15 +1,15 @@
 #include <gtest/gtest.h>
 
-#include <sensor-mock-nopoly.h>
-#include <sensor-avg-nopoly.h>
+#include <sensor-mock.h>
+#include <sensor-avg.h>
 
 
-TEST(sensor_avg_nopoly_suite, change_temperatures)
+TEST(sensor_avg_suite, change_temperatures)
 {
-    MockSensor_nopoly s1(3);
-    MockSensor_nopoly s2(4);
+    MockSensor s1(3);
+    MockSensor s2(4);
 
-    AveragingSensor_nopoly avg;
+    AveragingSensor avg;
     avg.add(&s1);
     avg.add(&s2);
 
