@@ -7,17 +7,18 @@ ADD_LIBRARY(
   sensor-mock.cpp
   sensor-random.h
   sensor-random.cpp
-
   sensor-avg.h
   sensor-avg.cpp
-
   sensor-w1.h
 
-  switch-mock.cpp
   switch-mock.h
+  switch-mock.cpp
 
-  hysteresis.cpp
   hysteresis.h
+  hysteresis.cpp
+
+  display-led-stripe.h
+  display-led-stripe.cpp
 )
 
 TARGET_INCLUDE_DIRECTORIES(

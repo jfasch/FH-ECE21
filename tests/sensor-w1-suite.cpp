@@ -46,7 +46,6 @@ struct w1_sensor_suite : public ::testing::Test
         ASSERT_EQ(nwritten, content.size());
     }
 
-
     int fd;
     string filename;
 };
@@ -56,11 +55,11 @@ TEST_F(w1_sensor_suite, read_sensor)
     W1Sensor sensor(filename);                 // <--- using filename from w1_sensor_suite fixture
     double temperature;
 
-    change_temperature(42);                // <--- change temperature
+    change_temperature(42);                    // <--- change temperature
     temperature = sensor.get_temperature();    // <--- read temperature
     ASSERT_FLOAT_EQ(temperature, 42);
 
-    change_temperature(36);                  // <--- change temperature
+    change_temperature(36);                    // <--- change temperature
     temperature = sensor.get_temperature();    // <--- read temperature
     ASSERT_FLOAT_EQ(temperature, 36);
 }
