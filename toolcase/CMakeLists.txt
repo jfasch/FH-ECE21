@@ -12,6 +12,12 @@ ADD_LIBRARY(
   sensor-avg.cpp
 
   sensor-w1.h
+
+  switch-mock.cpp
+  switch-mock.h
+
+  hysteresis.cpp
+  hysteresis.h
 )
 
 TARGET_INCLUDE_DIRECTORIES(

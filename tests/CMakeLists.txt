@@ -9,6 +9,13 @@ ADD_EXECUTABLE(
   sensor-avg-change-temperatures.cpp
 
   sensor-w1-suite.cpp
+
+  switch-mock-basic.cpp
+
+  hysteresis-falls_below_range.cpp
+  hysteresis-nop_when_within_range.cpp
+  hysteresis-rises_above_range.cpp
+  hysteresis-rises_above_range_when_on.cpp
 )
 
 TARGET_LINK_LIBRARIES(
