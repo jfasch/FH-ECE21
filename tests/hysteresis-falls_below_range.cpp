@@ -9,7 +9,7 @@ TEST(hysteresis_suite, falls_below_range)
     MockSwitch switcH(MockSwitch::OFF);
 
     Hysteresis hyst(&sensor, &switcH, 
-                    20.1, 30.4);                // <--- initially within range
+                    20.1, 30.4);                       // <--- initially within range
 
     hyst.check();
     ASSERT_EQ(switcH.state(), MockSwitch::OFF);
