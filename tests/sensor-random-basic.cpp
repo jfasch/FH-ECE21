@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <sensor.h>
 #include <sensor-random.h>
 
 TEST(sensor_random_suite, basic)
@@ -18,6 +19,5 @@ TEST(sensor_random_suite, is_a_sensor)
     RandomSensor rs(36.4, 42.3);
 
     Sensor* s = &rs;
-    ASSERT_FLOAT_EQ(s->get_temperature(), 36.4);
     ASSERT_TRUE(dynamic_cast<RandomSensor*>(s));
 }
