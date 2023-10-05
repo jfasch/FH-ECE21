@@ -1,5 +1,6 @@
 #pragma once
 #include <sensor.h>
+
 class ConstantSensor : public Sensor
 {
 public:
