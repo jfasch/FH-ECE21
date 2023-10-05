@@ -2,6 +2,7 @@
 
 #include <sensor-mock.h>
 #include <sensor-avg.h>
+#include <sensor-const.h>
 
 
 TEST(sensor_avg_suite, basic)
@@ -19,7 +20,7 @@ TEST(sensor_avg_suite, basic)
 TEST(sensor_avg_suite, is_a_sensor)
 {
     MockSensor s1(3);
-    ConstSensor s2(4);
+    ConstantSensor s2(4);
 
     AveragingSensor avg;
     avg.add(&s1);  // <-- is-a
