@@ -12,3 +12,12 @@ TEST(sensor_random_suite, basic)
     ASSERT_FLOAT_EQ(rs.low(), 36.4);                   // <--- RandomSensor specific interface
     ASSERT_FLOAT_EQ(rs.high(), 42.3);                  // <--- RandomSensor specific interface
 }
+
+TEST(sensor_random_suite, is_a_sensor)
+{
+    RandomSensor rs(36.4, 42.3);
+
+    Sensor* s = &rs;
+    ASSERT_FLOAT_EQ(s->get_temperature(), 36.4);
+    ASSERT_TRUE(dynamic_cast<RandomSensor*>(s));
+}

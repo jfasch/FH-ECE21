@@ -15,3 +15,17 @@ TEST(sensor_avg_suite, basic)
 
     ASSERT_FLOAT_EQ(avg.get_temperature(), 3.5);       // <--- calculates average of all measurements
 }
+
+TEST(sensor_avg_suite, is_a_sensor)
+{
+    MockSensor s1(3);
+    ConstSensor s2(4);
+
+    AveragingSensor avg;
+    avg.add(&s1);  // <-- is-a
+    avg.add(&s2);  // <-- is-a
+
+    Sensor* s = &avg; // <-- is-a!!
+    ASSERT_FLOAT_EQ(s->get_temperature(), 3.5);
+    ASSERT_TRUE(dynamic_cast<AveragingSensor*>(s));
+}
