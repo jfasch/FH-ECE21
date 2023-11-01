@@ -1,9 +1,10 @@
 #pragma once
 
 #include <random>
+#include <sensor.h>
 
 
-class RandomSensor
+class RandomSensor : public Sensor
 {
 public:
     RandomSensor(double low, double high);
