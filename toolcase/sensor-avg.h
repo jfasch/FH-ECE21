@@ -1,16 +1,16 @@
 #pragma once
 
 #include <sensor-mock.h>
-
+#include <sensor.h>
 #include <vector>
 
 
-class AveragingSensor
+class AveragingSensor : public Sensor
 {
 public:
-    void add(MockSensor*);
+    void add(Sensor*);
     double get_temperature();
 
 private:
-    std::vector<MockSensor*> _sensors;
+    std::vector<Sensor*> _sensors;
 };

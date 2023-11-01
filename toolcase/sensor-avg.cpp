@@ -1,6 +1,6 @@
 #include "sensor-avg.h"
 
-void AveragingSensor::add(MockSensor* s)
+void AveragingSensor::add(Sensor* s)
 {
     _sensors.push_back(s);
 }
@@ -8,7 +8,7 @@ void AveragingSensor::add(MockSensor* s)
 double AveragingSensor::get_temperature()
 {
     double sum_temperatures = 0;
-    for (MockSensor* s: _sensors)
+    for (Sensor* s: _sensors)
         sum_temperatures += s->get_temperature();
 
     return sum_temperatures / _sensors.size();
