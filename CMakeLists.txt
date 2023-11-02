@@ -9,6 +9,7 @@ endif()
 
 ADD_SUBDIRECTORY(googletest)
 ADD_SUBDIRECTORY(toolcase)
+ADD_SUBDIRECTORY(bin)
 ADD_SUBDIRECTORY(tests)
 
 #ADD_SUBDIRECTORY(livehacking)
