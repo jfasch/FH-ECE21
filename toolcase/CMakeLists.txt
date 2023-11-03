@@ -19,6 +19,11 @@ ADD_LIBRARY(
 
   display-led-stripe.h
   display-led-stripe.cpp
+
+  LoggerSink.h
+  data-logger.h 
+  data-logger.cpp
+  Sensorconfig.h
 )
 
 TARGET_INCLUDE_DIRECTORIES(
