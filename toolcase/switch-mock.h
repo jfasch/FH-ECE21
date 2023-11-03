@@ -16,6 +16,8 @@ public:
     void on();
     void off();
 
+    // void set_state(bool) would be better
+
 private:
     State _state;
 };
