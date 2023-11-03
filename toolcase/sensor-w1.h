@@ -1,12 +1,14 @@
 #pragma once
 
+#include "sensor.h"
+
 #include <string>
 #include <cassert>
 #include <fcntl.h>
 #include <unistd.h>
 
 
-class W1Sensor
+class W1Sensor : public Sensor
 {
 public:
     W1Sensor(std::string filename)
