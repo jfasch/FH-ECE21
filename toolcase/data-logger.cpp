@@ -1,7 +1,12 @@
 #include <data-logger.h>
-#include <stdlib.h>     
+#include <stdlib.h> 
+#include <chrono>
+#include <thread>  
+#include <iostream>
 
-DataLogger::DataLogger(SensorConfig* sensors, LoggerSink* sink, uint16_t interval)
+
+
+DataLogger::DataLogger(SensorConfig* sensors, SinkLogger* sink, uint16_t interval)
 {
     _sink = sink;
     _sensors = sensors;
@@ -10,9 +15,17 @@ DataLogger::DataLogger(SensorConfig* sensors, LoggerSink* sink, uint16_t interva
 
 void DataLogger::startLogging()
 {
-    for (auto [name, sensor]: _sensors->getSensorMap())
+    std::string buffer;
+
+    while (1)
     {
-        _sink->print(name + ";" + std::to_string(sensor->get_temperature()) + "\n");
+        for (auto [name, sensor]: *_sensors)
+        {
+            buffer.append(name + ";" + std::to_string(sensor->get_temperature()) + ";");
+        }
+        _sink->print(buffer);
+        buffer.erase();
+        std::this_thread::sleep_for(std::chrono::milliseconds(_interval));
     }
-    // TODO wait
 }
+
