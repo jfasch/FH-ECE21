@@ -1,6 +1,6 @@
 #include "pwm_controll.h"
 
-#define CONTROLLER_PATH "/sys/class/pwm/pwmchip0/pwm0"
+const std::string CONTROLLER_PATH = "/sys/class/pwm";
 #define PERIOD 1000000
 
 
@@ -11,7 +11,7 @@ void LEDDisplay::LEDDisplay_set(int percentage)
 			throw std::runtime_error("Input has to be between 0 and 100!");
 		}
 		
-		std:ofstream periodFile(CONTROLLER_PATH + "/period");
+		std::ofstream periodFile(CONTROLLER_PATH + "/period");
 		
 		if(!periodFile.is_open())
 		{
@@ -20,7 +20,7 @@ void LEDDisplay::LEDDisplay_set(int percentage)
 			
 		periodFile << PERIOD;
 		
-		std:ofstream dutyFile(CONTROLLER_PATH + "/duty_cycle");
+		std::ofstream dutyFile(CONTROLLER_PATH + "/duty_cycle");
 		
 		if(!dutyFile.is_open())
 		{
@@ -35,7 +35,7 @@ int main()
 	LEDDisplay display; 
 	for(int i = 0;i <= 100;i++)
 	{
-		display::LEDDisplay_set(i);
+		display.LEDDisplay_set(i);
 	}
 	return 0;
 }
