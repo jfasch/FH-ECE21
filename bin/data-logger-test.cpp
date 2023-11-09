@@ -19,8 +19,8 @@ int main()
     SinkTerminal sink;
 
     DataLogger logger(&cfg, &sink, 1000);
-    //for (int i = 0; i < 5; i++)
-        logger.startLogging();
+
+    logger.startLogging();
 
     return 0;
 }
