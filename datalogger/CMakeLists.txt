@@ -1,6 +1,7 @@
 ADD_LIBRARY(
   fh-ece21-logger
 
+  sensor-values.h
   sensor-config.h
   sink-logger.h
   sink-terminal.h

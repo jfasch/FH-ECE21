@@ -7,9 +7,13 @@
 class SinkTerminal : public SinkLogger
 {
     public:
-        void print(std::string data)
+        void output(SensorValues data)
         {
-            std::string timeStamp = getTime();            
-            std::cout << timeStamp + ";" + data << std::endl;
+            for (auto [name, value]: data)
+            {
+                std::cout << name << " " << value << std::endl;
+            }
+            //std::string timeStamp = getTime();            
+            //std::cout << timeStamp + ";" + data << std::endl;
         }
 };

@@ -13,4 +13,5 @@ private:
     SinkLogger* _sink;
     SensorConfig* _sensors;
     uint16_t _interval;
+    SensorValues _measurements;
 };

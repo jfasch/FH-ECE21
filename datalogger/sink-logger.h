@@ -1,6 +1,7 @@
 
 #pragma once
 
+#include <sensor-values.h>
 #include <string>
 #include <ctime>
 
@@ -8,7 +9,7 @@ class SinkLogger
 {
 public:
     virtual ~SinkLogger() {}
-    virtual void print(std::string data) = 0;
+    virtual void output(SensorValues data) = 0;
 
     std::string getTime()
     {

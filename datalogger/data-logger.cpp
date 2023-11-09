@@ -3,6 +3,7 @@
 #include <chrono>
 #include <thread>  
 #include <iostream>
+#include <sensor-values.h>
 
 
 
@@ -21,10 +22,11 @@ void DataLogger::startLogging()
     {
         for (auto [name, sensor]: *_sensors)
         {
-            buffer.append(name + ";" + std::to_string(sensor->get_temperature()) + ";");
+            _measurements.addMeasurement(name, sensor->get_temperature());
+            //buffer.append(name + ";" + std::to_string(sensor->get_temperature()) + ";");
         }
-        _sink->print(buffer);
-        buffer.erase();
+        _sink->output(_measurements);
+        //buffer.erase();
         std::this_thread::sleep_for(std::chrono::milliseconds(_interval));
     }
 }

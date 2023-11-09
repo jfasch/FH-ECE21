@@ -6,7 +6,6 @@
 class SensorConfig
 {
 public:
-    //SensorConfig();
 
     void addSensor(std::string name, Sensor *sensor)
     {
