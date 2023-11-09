@@ -5,6 +5,7 @@ ADD_LIBRARY(
   sensor-config.h
   sink-logger.h
   sink-terminal.h
+  sink-file.h
   data-logger.h 
   data-logger.cpp
 
