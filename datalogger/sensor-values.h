@@ -11,10 +11,15 @@ public:
         _measuredData.insert({name, measurement,getTime()});
     }
 
+    double getMeasurement(std::string name)
+    {
+        return _measuredData[name];
+    }
+
+
     auto begin()       { return _measuredData.begin(); }
     auto end()          { return _measuredData.end(); }
 
-    
 private:
     std::map<std::string, float,std::time_t> _measuredData;
     std::time_t getTime()
