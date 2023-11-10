@@ -7,8 +7,7 @@
  * @class sinkfile
  * @brief outputs data given via a Sensorvalues Object to a file in a CSV style formatting
  *
- * expects a filename.
- * 
+ * @param filename: filename where data will be stored. existing file will bi overwritten!
 */
 class SinkFile : public SinkLogger
 {
