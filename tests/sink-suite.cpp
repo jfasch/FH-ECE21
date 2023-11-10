@@ -4,6 +4,8 @@
 #include <sensor.h>
 #include <sensor-config.h>
 #include <sink-mock.h>
+#include <filesystem>
+#include <sink-file.h>
 
 TEST(sink_suite, config_test)
 {
@@ -28,3 +30,26 @@ TEST(sink_suite, config_test)
 
 }
 
+
+TEST(SinkFileTest, FileCreationAndContentTest)
+{
+    std::string testFileName = "sinkFileTest";
+    SinkFile sink(testFileName);
+    SensorValues values;
+    values.addMeasurement("ConstantSensor", 36.4);
+    values.addMeasurement("Temperature", 36.4);
+
+    sink.output(values);
+
+    ASSERT_TRUE(std::filesystem::exists(testFileName));
+
+    std::ifstream file(testFileName);
+    std::string line;
+    std::getline(file, line);
+    EXPECT_EQ(line, "ConstantSensor; 36.4");
+    std::getline(file, line);
+    EXPECT_EQ(line, "Temperature; 36.4");
+
+    file.close();
+    
+}
