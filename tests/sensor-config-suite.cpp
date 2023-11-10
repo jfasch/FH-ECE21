@@ -1,10 +1,14 @@
 #include <gtest/gtest.h>
+#include <fstream>
 #include <string>
+#include <sensor-values.h>
 #include <sensor-const.h>
 #include <sensor.h>
 #include <sensor-config.h>
 
-TEST(sensor_config_suite, basic_config_test)
+
+
+TEST(sensor_config_suite, config_test)
 {
     const std::string sensorName = "ConstantSensor";
     float measurement = 36.4;
@@ -39,3 +43,4 @@ TEST(sensor_config_suite, config_test_allMeasurements)
     }
 
 }
+
