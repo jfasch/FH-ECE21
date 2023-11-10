@@ -1,10 +1,41 @@
 #include <gtest/gtest.h>
+#include <fstream>
 #include <string>
+#include <filesystem>
+#include <sink-file.h>
+#include <sensor-values.h>
 #include <sensor-const.h>
 #include <sensor.h>
 #include <sensor-config.h>
 
 TEST(sensor_config_suite, basic_config_test)
+namespace fs = std::filesystem;
+
+class SinkFileTest:public::testing::Test 
+{
+    protected:
+        std::string testFileName = "test_log.txt";
+
+        void SetUp() override // Remove the test file if it exists before each test
+        {
+            fs::remove(testFileName)
+        }
+
+        void TearDown() override // Clean up: Remove the test file after each test
+        {
+            fs::remove(testFileName);
+        }
+};
+
+TEST_F(SinkFileTest, FileCreationAndContentTest)
+{
+    SinkFile sink(testFileName);
+    SensorValues values;
+    values.addMeasurement("Temperature", 25.5);
+    
+}
+
+TEST(sensor_config_suite, config_test)
 {
     const std::string sensorName = "ConstantSensor";
     float measurement = 36.4;
@@ -39,3 +70,4 @@ TEST(sensor_config_suite, config_test_allMeasurements)
     }
 
 }
+
