@@ -11,6 +11,7 @@ TEST(BoilingPot_suite, basic)
     BoilingPot pot(&sensor, &switcH);
 
     pot.heat(37.5);
+    pot.check();
                                     
     ASSERT_EQ(switcH.state(), MockSwitch::ON);
 }
@@ -22,10 +23,13 @@ TEST(BoilingPot_suite, cheat)
     MockSwitch switcH(MockSwitch::OFF);
     BoilingPot pot(&sensor, &switcH);
 
-    pot.heat(37.5);                               
+    pot.heat(37.5);  
+    pot.check();                             
     ASSERT_EQ(switcH.state(), MockSwitch::ON);
 
     sensor.set_temperature(100);
+    pot.check(); 
     ASSERT_EQ(switcH.state(), MockSwitch::OFF);
+
 
 }

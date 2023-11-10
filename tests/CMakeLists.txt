@@ -1,6 +1,8 @@
 ADD_EXECUTABLE(
   fh-ece21-suite
 
+  boiling-pot-test.cpp
+
   sensor-const-basic.cpp
   sensor-random-basic.cpp
   sensor-mock-basic.cpp
