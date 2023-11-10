@@ -33,6 +33,7 @@ ADD_EXECUTABLE(
 
 TARGET_LINK_LIBRARIES(
   fh-ece21-suite
+  fh-ece21-logger
 
   fh-ece21-toolcase
   gtest_main 

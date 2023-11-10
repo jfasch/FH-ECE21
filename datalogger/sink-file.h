@@ -7,7 +7,7 @@ class SinkFile : public SinkLogger
 {
 public:
     explicit SinkFile(const std::string& filename) 
-        : _outFile(filename, std::ios::out | std::ios::app) // Open the file in append mode
+        : _outFile(filename, std::ios::out | std::ios::out) // Open the file in append mode
     {
         if (!_outFile) // Check if the file is open (could not be opened)
         {
