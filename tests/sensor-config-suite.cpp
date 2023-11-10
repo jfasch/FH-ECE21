@@ -33,7 +33,21 @@ TEST_F(SinkFileTest, FileCreationAndContentTest)
 {
     SinkFile sink(testFileName);
     SensorValues values;
-    values.addMeasurement("Temperature", 25.5);
+    values.addMeasurement("ConstantSensor");
+    values.addMeasurement("Temperature", 36.4);
+
+    sink.output(values);
+
+    ASSERT_TRUE(fs::exists(SinkFileTest))
+
+    std::ifstream file(testFileName);
+    std::string line;
+    std::getline(file, line);
+    EXPECT_EQ(line, "ConstantSensor");
+    std::getline(file, line);
+    EXPECT_EQ(line, "Temperature; 36.4");
+
+    file.close();
     
 }
 */
