@@ -20,13 +20,8 @@ void DataLogger::startLogging()
 
     while (1)
     {
-        for (auto [name, sensor]: *_sensors)
-        {
-            _measurements.addMeasurement(name, sensor->get_temperature());
-            //buffer.append(name + ";" + std::to_string(sensor->get_temperature()) + ";");
-        }
+        _measurements = _sensors->getAllMeasurements();
         _sink->output(_measurements);
-        //buffer.erase();
         std::this_thread::sleep_for(std::chrono::milliseconds(_interval));
     }
 }

@@ -4,7 +4,7 @@
 #include <sensor.h>
 #include <sensor-config.h>
 
-TEST(sensor_config_suite, config_test)
+TEST(sensor_config_suite, basic_config_test)
 {
     const std::string sensorName = "ConstantSensor";
     float measurement = 36.4;
@@ -22,3 +22,20 @@ TEST(sensor_config_suite, config_test)
 
 }
 
+TEST(sensor_config_suite, config_test_allMeasurements)
+{
+    const std::string sensorName = "ConstantSensor";
+    float measurement = 36.4;
+    ConstantSensor cs(measurement);
+    SensorConfig cfg;
+    cfg.addSensor(sensorName, &cs);
+    cfg.addSensor(sensorName, &cs);
+    cfg.addSensor(sensorName, &cs);
+    SensorValues values = cfg.getAllMeasurements();
+    for (auto [name, value]: values)
+    {
+        EXPECT_EQ(sensorName, name);
+        ASSERT_FLOAT_EQ(measurement, value);
+    }
+
+}
