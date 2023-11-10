@@ -24,6 +24,7 @@ ADD_EXECUTABLE(
   display_led_stripe_suite__variations.cpp
 
   sensor-config-suite.cpp
+  sink-suite.cpp
   # fixtures
   fixture-tmpdir.h
   fixture-tmpdir.cpp  

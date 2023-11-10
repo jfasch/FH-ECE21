@@ -7,8 +7,9 @@
 #include <sensor-const.h>
 #include <sensor.h>
 #include <sensor-config.h>
-
+/*
 TEST(sensor_config_suite, basic_config_test)
+
 namespace fs = std::filesystem;
 
 class SinkFileTest:public::testing::Test 
@@ -27,6 +28,7 @@ class SinkFileTest:public::testing::Test
         }
 };
 
+
 TEST_F(SinkFileTest, FileCreationAndContentTest)
 {
     SinkFile sink(testFileName);
@@ -34,6 +36,7 @@ TEST_F(SinkFileTest, FileCreationAndContentTest)
     values.addMeasurement("Temperature", 25.5);
     
 }
+*/
 
 TEST(sensor_config_suite, config_test)
 {
