@@ -21,3 +21,9 @@ void Hysteresis::check()
         _switch->off();
     else { /* leave as-is */ }
 }
+
+void Hysteresis::set_range(double low, double high)
+{
+    _low = low;
+    _high = high;
+}

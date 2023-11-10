@@ -1,6 +1,10 @@
 ADD_LIBRARY(
   fh-ece21-toolcase
 
+  boiling-pot.h
+  boilingPot.cpp
+
+
   sensor-const.h
   sensor-const.cpp
   sensor-mock.h
