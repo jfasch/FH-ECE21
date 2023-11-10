@@ -36,6 +36,7 @@ TEST(sensor_config_suite, config_test_allMeasurements)
     cfg.addSensor(sensorName, &cs);
     cfg.addSensor(sensorName, &cs);
     SensorValues values = cfg.getAllMeasurements();
+    
     for (auto [name, value]: values)
     {
         EXPECT_EQ(sensorName, name);

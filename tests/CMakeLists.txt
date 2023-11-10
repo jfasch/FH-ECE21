@@ -25,6 +25,7 @@ ADD_EXECUTABLE(
 
   sensor-config-suite.cpp
   sink-suite.cpp
+  logger-suite.cpp
   # fixtures
   fixture-tmpdir.h
   fixture-tmpdir.cpp  

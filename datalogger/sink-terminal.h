@@ -13,7 +13,5 @@ class SinkTerminal : public SinkLogger
             {
                 std::cout << name << " " << value << std::endl;
             }
-            //std::string timeStamp = getTime();            
-            //std::cout << timeStamp + ";" + data << std::endl;
         }
 };
