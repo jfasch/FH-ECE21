@@ -26,3 +26,15 @@ void DataLogger::startLogging()
     }
 }
 
+
+void DataLogger::startLogging(uint16_t count)
+{
+    std::string buffer;
+
+    while (count--)
+    {
+        _measurements = _sensors->getAllMeasurements();
+        _sink->output(_measurements);
+        std::this_thread::sleep_for(std::chrono::milliseconds(_interval));
+    }
+}
