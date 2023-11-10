@@ -29,7 +29,7 @@ class SinkFileTest:public::testing::Test
 };
 
 
-TEST_F(SinkFileTest, FileCreationAndContentTest)
+TEST(SinkFileTest, FileCreationAndContentTest)
 {
     SinkFile sink(testFileName);
     SensorValues values;
