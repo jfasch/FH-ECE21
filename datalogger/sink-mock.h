@@ -4,7 +4,9 @@
 #include <vector>
 #include <sink-logger.h>
 
-
+/*
+ The
+*/
 class SinkMock : public SinkLogger
 {
     public:
@@ -17,6 +19,7 @@ class SinkMock : public SinkLogger
 
         }
 
+        // returns the temperature for a given sensorname
         double getTemperature(std::string sensorName)
         {
             return _givenSensorValues[sensorName];
