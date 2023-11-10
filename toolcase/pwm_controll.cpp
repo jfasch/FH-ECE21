@@ -26,8 +26,7 @@ void LEDDisplay::LEDDisplay_set(int percentage)
 		{
 			throw std::runtime_error("Failed to open PWM controller file!");
 		}
-		dutyFile << PERIOD * percentage/100;
-		
+		dutyFile << PERIOD * percentage / 100;
 	}
 
 int main()
