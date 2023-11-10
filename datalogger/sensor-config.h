@@ -4,6 +4,16 @@
 #include <string>
 #include <map>
 
+/**
+ * @class Sesnorconfig
+ * @brief Hold all sensors which should be logged by the DataLogger class.
+ * All sensors are stored in an provate map.
+ *
+ * new sensors need to be added by the addSensor functions.
+ * 
+ * getAllMeasurements funciotns returns a class SensorValues object which holds all 
+ * measured sensor data.
+*/
 class SensorConfig
 {
 public:

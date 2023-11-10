@@ -3,6 +3,13 @@
 #include <iostream>
 #include <sink-logger.h>
 
+/**
+ * @class sinkfile
+ * @brief outputs data given via a Sensorvalues Object to a file in a CSV style formatting
+ *
+ * expects a filename.
+ * 
+*/
 class SinkFile : public SinkLogger
 {
 public:
