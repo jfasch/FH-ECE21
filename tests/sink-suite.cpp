@@ -23,7 +23,7 @@ TEST(sink_suite, config_test)
     SensorValues values = cfg.getAllMeasurements();
 
     sink.output(values);
-    for (auto [name, sensor]: cfg)
+    for (auto [name, sensor]: values)
     {
         ASSERT_FLOAT_EQ(measurement, sink.getTemperature(name));
     }

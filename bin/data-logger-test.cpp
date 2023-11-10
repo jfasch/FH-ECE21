@@ -17,8 +17,10 @@ int main()
     cfg.addSensor("Random1", &rd1);
     cfg.addSensor("Random2", &rd2);
     cfg.addSensor("Random3", &rd2); 
-    //SinkTerminal sink;
-    SinkFile sink("testfile");
+
+    SensorValues values = cfg.getAllMeasurements();
+    SinkTerminal sink;
+    //SinkFile sink("testfile");
     DataLogger logger(&cfg, &sink, 1000);
 
     logger.startLogging();

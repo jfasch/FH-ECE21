@@ -22,10 +22,6 @@ public:
         }
         return measurements;
     }
-
-    auto begin()       { return _sensors.begin(); }
-    auto end()          { return _sensors.end(); }
-
     
 private:
     std::map<std::string, Sensor*> _sensors;
