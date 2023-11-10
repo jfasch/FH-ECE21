@@ -1,6 +1,6 @@
 #include "pwm_controll.h"
 
-const std::string CONTROLLER_PATH = "/sys/class/pwm";
+const std::string CONTROLLER_PATH = "/sys/class/pwm/pwmchip0/pwm0";
 #define PERIOD 1000000
 
 
@@ -29,13 +29,4 @@ void LEDDisplay::LEDDisplay_set(int percentage)
 		dutyFile << PERIOD * percentage / 100;
 	}
 
-int main()
-{
-	LEDDisplay display; 
-	for(int i = 0;i <= 100;i++)
-	{
-		display.LEDDisplay_set(i);
-	}
-	return 0;
-}
 

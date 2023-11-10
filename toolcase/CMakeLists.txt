@@ -21,7 +21,7 @@ ADD_LIBRARY(
   display-led-stripe.cpp
   
   pwm_controll.h
-  pwm_controll.c
+  pwm_controll.cpp
 )
 
 TARGET_INCLUDE_DIRECTORIES(
