@@ -23,6 +23,8 @@ ADD_EXECUTABLE(
   display_led_stripe_suite__somewhere_in_the_middle.cpp
   display_led_stripe_suite__variations.cpp
 
+  felber.cpp
+
   # fixtures
   fixture-tmpdir.h
   fixture-tmpdir.cpp  
