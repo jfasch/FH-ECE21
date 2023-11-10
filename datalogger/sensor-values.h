@@ -8,7 +8,7 @@ public:
 
     void addMeasurement(std::string name, float measurement)
     {
-        _measuredData.insert({name, measurement});
+        _measuredData.insert({name, measurement,getTime()});
     }
 
     auto begin()       { return _measuredData.begin(); }
@@ -16,6 +16,12 @@ public:
 
     
 private:
-    std::map<std::string, float> _measuredData;
+    std::map<std::string, float,std::time_t> _measuredData;
+    std::time_t getTime()
+    {
+        time_t currentTime;
+        time(&currentTime);
+        return currentTime;
+    }
 };
 
