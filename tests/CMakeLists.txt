@@ -23,15 +23,21 @@ ADD_EXECUTABLE(
   display_led_stripe_suite__somewhere_in_the_middle.cpp
   display_led_stripe_suite__variations.cpp
 
-  felber.cpp
+  sensor-config-suite.cpp
+  sink-suite.cpp
+  logger-suite.cpp
 
   # fixtures
   fixture-tmpdir.h
   fixture-tmpdir.cpp  
+
+  # misc
+  felber.cpp
 )
 
 TARGET_LINK_LIBRARIES(
   fh-ece21-suite
+  fh-ece21-logger
 
   fh-ece21-toolcase
   gtest_main 
