@@ -10,3 +10,8 @@ ADD_EXECUTABLE(map map.cpp)
 
 ADD_EXECUTABLE(data-logger-test data-logger-test.cpp)
 TARGET_LINK_LIBRARIES(data-logger-test fh-ece21-toolcase fh-ece21-logger)
+
+IF (${MOSQUITTO_FOUND})
+  ADD_EXECUTABLE(mqtt-client mqtt-client.cpp)
+  TARGET_LINK_LIBRARIES(mqtt-client Mosquitto::Mosquitto)
+ENDIF()
