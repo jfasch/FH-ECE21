@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+#include <data-logger.h>
 #include <string>
 #include <sensor-const.h>
 #include <sensor.h>
@@ -14,12 +15,7 @@ TEST(sink_suite, config_test)
     float measurement = 36.4;
 
     ConstantSensor cs(measurement);
-    SensorConfig cfg;
-    SinkMock sink;
 
-    cfg.addSensor(sensorName, &cs);
-    cfg.addSensor(sensorName, &cs);
-    cfg.addSensor(sensorName, &cs);
 
     SensorValues values = cfg.getAllMeasurements();
 
@@ -31,27 +27,33 @@ TEST(sink_suite, config_test)
 
 }
 */
-/*
-TEST(SinkFileTest, FileCreationAndContentTest)
-{
-    std::string testFileName = "sinkFileTest";
-    SinkFile sink(testFileName);
-    SensorValues values;
-    values.addMeasurement("ConstantSensor", 36.4);
-    values.addMeasurement("Temperature", 36.4);
 
-    sink.output(values);
+TEST(logger_suite, LoggerFileTest)
+{
+    const std::string testFileName = "loggerFileTest";
+    float measurement = 36.4;
+    SinkFile sink(testFileName);
+    SensorConfig cfg;
+    ConstantSensor cs(measurement);
+
+    cfg.addSensor("ConstantSensor1", &cs);
+    cfg.addSensor("ConstantSensor2", &cs);
+    cfg.addSensor("ConstantSensor3", &cs);
+    DataLogger logger(&cfg, &sink, 5);
+    logger.startLogging(1);
 
     ASSERT_TRUE(std::filesystem::exists(testFileName));
 
     std::ifstream file(testFileName);
     std::string line;
     std::getline(file, line);
-    EXPECT_EQ(line, "ConstantSensor; 36.4");
+    EXPECT_EQ(line, "ConstantSensor1; 36.4");
     std::getline(file, line);
-    EXPECT_EQ(line, "Temperature; 36.4");
+    EXPECT_EQ(line, "ConstantSensor2; 36.4");
+    std::getline(file, line);
+    EXPECT_EQ(line, "ConstantSensor3; 36.4");
 
     file.close();
+    std::remove(testFileName.c_str());
     
 }
-*/

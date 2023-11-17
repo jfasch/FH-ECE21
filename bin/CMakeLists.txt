@@ -7,6 +7,10 @@ ADD_EXECUTABLE(data-logger data-logger.cpp)
 TARGET_LINK_LIBRARIES(data-logger fh-ece21-toolcase)
 
 ADD_EXECUTABLE(map map.cpp)
+<<<<<<< HEAD
 >>>>>>>>> Temporary merge branch 2
+=======
+
+>>>>>>> 16a786f80f6c84685e166f85426d565bbdf0ff7d
 ADD_EXECUTABLE(data-logger-test data-logger-test.cpp)
 TARGET_LINK_LIBRARIES(data-logger-test fh-ece21-toolcase fh-ece21-logger)

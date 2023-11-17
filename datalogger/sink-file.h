@@ -3,11 +3,17 @@
 #include <iostream>
 #include <sink-logger.h>
 
+/**
+ * @class sinkfile
+ * @brief outputs data given via a Sensorvalues Object to a file in a CSV style formatting
+ *
+ * @param filename: filename where data will be stored. existing file will bi overwritten!
+*/
 class SinkFile : public SinkLogger
 {
 public:
     explicit SinkFile(const std::string& filename) 
-        : _outFile(filename, std::ios::out | std::ios::app) // Open the file in append mode
+        : _outFile(filename, std::ios::out | std::ios::out) // Open the file in append mode
     {
         if (!_outFile) // Check if the file is open (could not be opened)
         {

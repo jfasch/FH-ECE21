@@ -31,9 +31,9 @@ TEST(sink_suite, config_test)
 }
 
 
-TEST(SinkFileTest, FileCreationAndContentTest)
+TEST(sink_suite, FileCreationAndContentTest)
 {
-    std::string testFileName = "sinkFileTest";
+    const std::string testFileName = "sinkFileTest";
     SinkFile sink(testFileName);
     SensorValues values;
     values.addMeasurement("ConstantSensor", 36.4);
@@ -51,5 +51,5 @@ TEST(SinkFileTest, FileCreationAndContentTest)
     EXPECT_EQ(line, "Temperature; 36.4");
 
     file.close();
-    
+    std::remove(testFileName.c_str());
 }

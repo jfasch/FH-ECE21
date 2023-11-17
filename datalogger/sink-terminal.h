@@ -3,7 +3,11 @@
 #include <iostream>
 #include <sink-logger.h>
 
-
+/**
+ * @class SinkTermianl
+ * @brief Outputs data given via a SensorValues object to the stdout
+ * 
+*/
 class SinkTerminal : public SinkLogger
 {
     public:

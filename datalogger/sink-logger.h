@@ -5,22 +5,18 @@
 #include <string>
 #include <ctime>
 
+/**
+ * @class SinkLogger
+ * @brief virtual class to handle different sinks for the DataLogger
+ *
+ * every Sink needs an output functions which outputs data given via a 
+ * SensorValues Object.
+ * 
+*/
 class SinkLogger
 {
 public:
     virtual ~SinkLogger() {}
     virtual void output(SensorValues data) = 0;
-
-    std::string getTime()
-    {
-        time_t currentTime;
-        time(&currentTime);
-        timeBuffer = ctime(&currentTime);
-        timeBuffer.erase(20, 5); // remove newline 
-        return timeBuffer;
-    }
-    
-private:
-std::string timeBuffer;
 
 };

@@ -4,8 +4,11 @@
 #include <vector>
 #include <sink-logger.h>
 
-/*
- The
+/**
+ * @class SinkMock
+ * @brief stores data given via a SensorValues object in an private map.
+ * 
+ * Inividual datapoitsncan be retreived via a getTemperature function
 */
 class SinkMock : public SinkLogger
 {
