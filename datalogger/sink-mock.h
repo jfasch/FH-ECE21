@@ -18,18 +18,17 @@ class SinkMock : public SinkLogger
             }
         }
 
-        // Returns the temperature for a given sensor name
-        double getTemperature(const std::string& sensorName)
+        // Retrieve the entire array of values for a given sensor
+        std::vector<double> getSensorReadings(const std::string& sensorName)
         {
-            if (_givenSensorValues.find(sensorName) != _givenSensorValues.end() && !_givenSensorValues[sensorName].empty())
+            if (_givenSensorValues.find(sensorName) != _givenSensorValues.end())
             {
-                // Return the most recent value
-                return _givenSensorValues[sensorName].back();
+                return _givenSensorValues[sensorName];
             }
             else
             {
-                std::cerr << "Sensor name not found or no readings available." << std::endl;
-                return 0.0; // Or some other appropriate default value/error indication
+                std::cerr << "Sensor name not found." << std::endl;
+                return {}; // Return an empty vector if sensor name is not found
             }
         }
 
