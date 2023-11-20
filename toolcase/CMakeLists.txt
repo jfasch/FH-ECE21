@@ -1,6 +1,10 @@
 ADD_LIBRARY(
   fh-ece21-toolcase
 
+  boiling-pot.h
+  boilingPot.cpp
+
+
   sensor-const.h
   sensor-const.cpp
   sensor-mock.h
@@ -13,6 +17,7 @@ ADD_LIBRARY(
 
   switch-mock.h
   switch-mock.cpp
+  switch.h
 
   hysteresis.h
   hysteresis.cpp
@@ -20,6 +25,11 @@ ADD_LIBRARY(
   display-led-stripe.h
   display-led-stripe.cpp
 
+  sysfs-switch.cpp
+  sysfs-switch.h
+
+  pwm_controll.h
+  pwm_controll.cpp
 )
 
 TARGET_INCLUDE_DIRECTORIES(

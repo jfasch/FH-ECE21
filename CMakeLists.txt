@@ -19,5 +19,5 @@ ADD_SUBDIRECTORY(tests)
 ADD_SUBDIRECTORY(datalogger)
 
 
-#ADD_SUBDIRECTORY(livehacking)
+ADD_SUBDIRECTORY(livehacking)
 #ADD_SUBDIRECTORY(ss2023/students)
