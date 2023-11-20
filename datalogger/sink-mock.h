@@ -17,17 +17,26 @@ class SinkMock : public SinkLogger
         {
             for (auto [name, value]: data)
             {
+                if(_givenSensorValues.count(name)==0){
+                    std::vector<double> valuesVec;
+                    valuesVec.push_back(value);
+                    _givenSensorValues.insert(std::pair(name,valuesVec));
+                }
+                else{
+                    auto vec=_givenSensorValues.at(name);
+                    vec.push_back(value);
+                }
                 _givenSensorValues.insert(std::pair(name, value));
             }
 
         }
 
         // returns the temperature for a given sensorname
-        double getTemperature(std::string sensorName)
+        auto getTemperature(std::string sensorName)
         {
             return _givenSensorValues.at(sensorName);
         }
 
     private:
-        std::map<std::string, double> _givenSensorValues;
+        std::map<std::string, std::vector<double> > _givenSensorValues;
 };
