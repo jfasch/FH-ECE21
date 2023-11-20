@@ -8,18 +8,24 @@
 class SinkMock : public SinkLogger
 {
     public:
-        // Assume data is a vector of pairs, each pair contains sensor name and its value
-        void output(const std::vector<std::pair<std::string, double>>& data)
+        void output(SensorValues data)
         {
-            for (const auto& [name, value] : data)
+            for (auto [name, value] : data)
             {
+                // Check if the name is already present
+                if (_givenSensorValues.find(name) == _givenSensorValues.end())
+                {
+                    // If not present, insert the name and initialize the vector
+                    _givenSensorValues[name] = std::vector<double>();
+                }
+
                 // Add the value to the vector associated with the sensor name
                 _givenSensorValues[name].push_back(value);
             }
         }
 
-        // Retrieve the entire array of values for a given sensor
-        std::vector<double> getSensorReadings(const std::string& sensorName)
+        // returns the temperature for a given sensorname
+        std::vector<double> getAllReadingsForSensor(const std::string& sensorName)
         {
             if (_givenSensorValues.find(sensorName) != _givenSensorValues.end())
             {
