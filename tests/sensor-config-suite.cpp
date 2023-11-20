@@ -8,22 +8,36 @@
 
 
 
-TEST(sensor_config_suite, config_test)
+TEST(sensor_config_suite, Sensorconfig_Test)
 {
-    const std::string sensorName = "ConstantSensor";
     float measurement = 36.4;
     ConstantSensor cs(measurement);
     SensorConfig cfg;
-    cfg.addSensor(sensorName, &cs);
-    cfg.addSensor(sensorName, &cs);
-    cfg.addSensor(sensorName, &cs);
-    SensorValues values = cfg.getAllMeasurements();
     
-    for (auto [name, value]: values)
-    {
-        EXPECT_EQ(sensorName, name);
-        ASSERT_FLOAT_EQ(measurement, value);
-    }
+    ASSERT_TRUE(cfg.addSensor("Sensor1", &cs));
+    ASSERT_TRUE(cfg.addSensor("Sensor2", &cs));
+    ASSERT_TRUE(cfg.addSensor("Sensor3", &cs));
+    ASSERT_FALSE(cfg.addSensor("Sensor3", &cs));
+    SensorValues values = cfg.getAllMeasurements();
+
+    ASSERT_FLOAT_EQ(values.getMeasurement("Sensor1"), measurement);
+    ASSERT_FLOAT_EQ(values.getMeasurement("Sensor2"), measurement);
+    ASSERT_FLOAT_EQ(values.getMeasurement("Sensor3"), measurement);
+
+}
+
+TEST(sensor_config_suite, SensorValues_Test)
+{
+    float measurement = 36.4;
+
+    SensorValues values;
+    ASSERT_TRUE(values.addMeasurement("value1", measurement	));
+    ASSERT_TRUE(values.addMeasurement("value2", measurement	));
+    ASSERT_FALSE(values.addMeasurement("value1", measurement));
+
+    ASSERT_FLOAT_EQ(values.getMeasurement("value1"), measurement);
+    ASSERT_FLOAT_EQ(values.getMeasurement("value1"), measurement);
+
 
 }
 

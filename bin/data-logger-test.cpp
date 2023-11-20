@@ -23,7 +23,7 @@ int main()
     //SinkFile sink("testfile");
     DataLogger logger(&cfg, &sink, 1000);
 
-    logger.startLogging();
+    logger.startLogging(5);
 
     return 0;
 }

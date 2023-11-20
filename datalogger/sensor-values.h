@@ -16,14 +16,15 @@ class SensorValues
 {
 public:
 
-    void addMeasurement(std::string name, float measurement)
+    bool addMeasurement(std::string name, float measurement)
     {
-        _measuredData.insert({name, measurement});
+        auto [ptr, result] = _measuredData.insert(std::pair(name, measurement));
+        return result;
     }
 
     double getMeasurement(std::string name)
     {
-        return _measuredData[name];
+        return _measuredData.at(name);
     }
 
 
