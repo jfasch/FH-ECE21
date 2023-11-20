@@ -1,10 +1,10 @@
 #pragma once
+#include <switch.h>
 
-
-class MockSwitch
+class MockSwitch : public Switch
 {
 public:
-    enum State
+    enum class State
     {
         ON,
         OFF
@@ -13,11 +13,9 @@ public:
     MockSwitch(State initial_state);
     
     State state() const { return _state; }
-    void on();
-    void off();
-
-    // void set_state(bool) would be better
-
+  
+    virtual void set_state(bool state);
+    
 private:
     State _state;
 };
