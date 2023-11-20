@@ -62,3 +62,7 @@ Test
    [  FAILED  ] test_suite.my_first_test
    
     1 FAILED TEST
+
+    peter war hier
+    me2
+    
