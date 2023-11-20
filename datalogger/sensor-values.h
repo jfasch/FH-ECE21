@@ -24,7 +24,7 @@ public:
 
     double getMeasurement(std::string name)
     {
-        return _measuredData[name];
+        return _measuredData.at(name);
     }
 
 

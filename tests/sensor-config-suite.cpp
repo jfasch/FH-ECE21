@@ -13,6 +13,7 @@ TEST(sensor_config_suite, Sensorconfig_Test)
     float measurement = 36.4;
     ConstantSensor cs(measurement);
     SensorConfig cfg;
+    
     ASSERT_TRUE(cfg.addSensor("Sensor1", &cs));
     ASSERT_TRUE(cfg.addSensor("Sensor2", &cs));
     ASSERT_TRUE(cfg.addSensor("Sensor3", &cs));

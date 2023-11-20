@@ -18,8 +18,14 @@ DataLogger::DataLogger(SensorConfig* sensors, SinkLogger* sink, uint16_t interva
 void DataLogger::startLogging(uint16_t count = 0)
 {
     std::string buffer;
+    bool endlessLoop = false;
 
-    while (count--)
+    if (count == 0)
+    {
+        endlessLoop = true;
+    }
+
+    while (count-- || (endlessLoop == true))
     {
         _measurements = _sensors->getAllMeasurements();
         _sink->output(_measurements);

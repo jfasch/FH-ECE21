@@ -20,8 +20,8 @@ public:
 
     bool addSensor(std::string name, Sensor *sensor)
     {
-        auto [ptr, inserted] = _sensors.insert(std::pair(name, sensor));
-        return inserted;
+        auto [ptr, result] = _sensors.insert(std::pair(name, sensor));
+        return result;
     }
 
     SensorValues getAllMeasurements()
