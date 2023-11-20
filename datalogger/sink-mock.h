@@ -17,7 +17,7 @@ class SinkMock : public SinkLogger
         {
             for (auto [name, value]: data)
             {
-                _givenSensorValues.insert({name, value});
+                _givenSensorValues.insert(std::pair(name, value));
             }
 
         }
@@ -25,7 +25,7 @@ class SinkMock : public SinkLogger
         // returns the temperature for a given sensorname
         double getTemperature(std::string sensorName)
         {
-            return _givenSensorValues[sensorName];
+            return _givenSensorValues.at(sensorName);
         }
 
     private:

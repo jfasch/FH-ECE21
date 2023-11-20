@@ -18,9 +18,10 @@ class SensorConfig
 {
 public:
 
-    void addSensor(std::string name, Sensor *sensor)
+    bool addSensor(std::string name, Sensor *sensor)
     {
-        _sensors.insert({name, sensor});
+        auto [ptr, result] = _sensors.insert(std::pair(name, sensor));
+        return result;
     }
 
     SensorValues getAllMeasurements()

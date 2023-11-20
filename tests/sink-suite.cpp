@@ -7,26 +7,19 @@
 #include <filesystem>
 #include <sink-file.h>
 
-TEST(sink_suite, config_test)
+TEST(sink_suite, MockSinkTest)
 {
-    const std::string sensorName = "ConstantSensor";
     float measurement = 36.4;
-
-    ConstantSensor cs(measurement);
-    SensorConfig cfg;
     SinkMock sink;
+    SensorValues values;
 
-    cfg.addSensor(sensorName, &cs);
-    cfg.addSensor(sensorName, &cs);
-    cfg.addSensor(sensorName, &cs);
-
-    SensorValues values = cfg.getAllMeasurements();
+    values.addMeasurement("Value1", measurement);
+    values.addMeasurement("Value2", measurement);
 
     sink.output(values);
-    for (auto [name, sensor]: values)
-    {
-        ASSERT_FLOAT_EQ(measurement, sink.getTemperature(name));
-    }
+
+    ASSERT_FLOAT_EQ(sink.getTemperature("Value1"), measurement);
+    ASSERT_FLOAT_EQ(sink.getTemperature("Value2"), measurement);
 
 }
 

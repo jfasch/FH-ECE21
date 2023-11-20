@@ -14,21 +14,8 @@ class DataLogger
 public:
     DataLogger(SensorConfig* sensors, SinkLogger* sink, uint16_t interval);
 
-    // starts logging forever with given interval _interval
-    void startLogging();
     // starts logging for 'count' times
     void startLogging(uint16_t count);
-
-    std::string getTime()
-    {
-        time_t currentTime;
-        time(&currentTime);
-        timeBuffer = ctime(&currentTime);
-        timeBuffer.erase(20, 5); // remove newline 
-        return timeBuffer;
-    }
-    
-
 
 private:
     SinkLogger* _sink;
