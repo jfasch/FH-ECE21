@@ -32,12 +32,6 @@ public:
     auto end()          { return _measuredData.end(); }
 
 private:
-    std::map<std::string, float,std::time_t> _measuredData;
-    std::time_t getTime()
-    {
-        time_t currentTime;
-        time(&currentTime);
-        return currentTime;
-    }
+    std::map<std::string, float> _measuredData;
 };
 

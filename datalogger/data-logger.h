@@ -15,6 +15,7 @@ public:
     DataLogger(SensorConfig* sensors, SinkLogger* sink, uint16_t interval);
 
     // starts logging for 'count' times
+    // 0 means logging forever
     void startLogging(uint16_t count);
 
 private:

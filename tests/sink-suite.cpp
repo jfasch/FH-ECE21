@@ -24,13 +24,13 @@ TEST(sink_suite, MockSinkTest)
 }
 
 
-TEST(sink_suite, FileCreationAndContentTest)
+TEST(sink_suite, FileSinkTest)
 {
     const std::string testFileName = "sinkFileTest";
     SinkFile sink(testFileName);
     SensorValues values;
-    values.addMeasurement("ConstantSensor", 36.4);
-    values.addMeasurement("Temperature", 36.4);
+    values.addMeasurement("Sensor1", 36.4);
+    values.addMeasurement("Sensor2", 36.4);
 
     sink.output(values);
 
@@ -39,9 +39,9 @@ TEST(sink_suite, FileCreationAndContentTest)
     std::ifstream file(testFileName);
     std::string line;
     std::getline(file, line);
-    EXPECT_EQ(line, "ConstantSensor; 36.4");
+    EXPECT_EQ(line, "Sensor1; 36.4");
     std::getline(file, line);
-    EXPECT_EQ(line, "Temperature; 36.4");
+    EXPECT_EQ(line, "Sensor2; 36.4");
 
     file.close();
     std::remove(testFileName.c_str());

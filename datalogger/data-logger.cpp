@@ -18,12 +18,7 @@ DataLogger::DataLogger(SensorConfig* sensors, SinkLogger* sink, uint16_t interva
 void DataLogger::startLogging(uint16_t count = 0)
 {
     std::string buffer;
-    bool endlessLoop = false;
-
-    if (count == 0)
-    {
-        endlessLoop = true;
-    }
+    bool endlessLoop = (count == 0);
 
     while ( (count > 0) || (endlessLoop == true))
     {
