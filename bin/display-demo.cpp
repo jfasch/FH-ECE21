@@ -3,14 +3,14 @@
 #include <thread>
 #include <stdexcept>
 
-const std::string CONTROLLER_PATH = "/sys/class/pwm/pwmchip0/pwm1";
+const std::string CONTROLLER_PATH = "/sys/class/pwm/pwmchip0";
 #define PERIOD 1000000
 
 int main()
 {
 	while(true)
 	{
-		LEDDisplay display(CONTROLLER_PATH,PERIOD); 
+		LEDDisplay display(CONTROLLER_PATH,PERIOD,10); 
 		for(int i = 0;i <= 100;i++)
 		{
 			display.set_percentage(i);

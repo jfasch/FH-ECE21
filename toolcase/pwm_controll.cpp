@@ -10,7 +10,7 @@ void LEDDisplay::set_percentage(int percentage)
 			throw std::runtime_error("Input has to be between 0 and 100!");
 		}
 		
-		int duty_file_descriptor = open((_path+"/duty_cycle").c_str(), O_WRONLY);
+		int duty_file_descriptor = open((_path + "/pwm" + _channel +"/duty_cycle").c_str(), O_WRONLY);
 
 		if(duty_file_descriptor == -1)
 		{
