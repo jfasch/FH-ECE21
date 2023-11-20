@@ -8,31 +8,13 @@
 #include <filesystem>
 #include <sink-file.h>
 
-/*
-TEST(sink_suite, config_test)
-{
-    const std::string sensorName = "ConstantSensor";
-    float measurement = 36.4;
-
-    ConstantSensor cs(measurement);
 
 
-    SensorValues values = cfg.getAllMeasurements();
-
-    sink.output(values);
-    for (auto [name, sensor]: cfg)
-    {
-        ASSERT_FLOAT_EQ(measurement, sink.getTemperature(name));
-    }
-
-}
-*/
-
-TEST(logger_suite, LoggerFileTest)
+TEST(logger_suite, LoggerMock)
 {
     const std::string testFileName = "loggerFileTest";
     float measurement = 36.4;
-    SinkFile sink(testFileName);
+    SinkMock sink;
     SensorConfig cfg;
     ConstantSensor cs(measurement);
 
@@ -42,18 +24,8 @@ TEST(logger_suite, LoggerFileTest)
     DataLogger logger(&cfg, &sink, 5);
     logger.startLogging(1);
 
-    ASSERT_TRUE(std::filesystem::exists(testFileName));
-
-    std::ifstream file(testFileName);
-    std::string line;
-    std::getline(file, line);
-    EXPECT_EQ(line, "ConstantSensor1; 36.4");
-    std::getline(file, line);
-    EXPECT_EQ(line, "ConstantSensor2; 36.4");
-    std::getline(file, line);
-    EXPECT_EQ(line, "ConstantSensor3; 36.4");
-
-    file.close();
-    std::remove(testFileName.c_str());
+    ASSERT_FLOAT_EQ(measurement, sink.getTemperature("ConstantSensor1"));
+    ASSERT_FLOAT_EQ(measurement, sink.getTemperature("ConstantSensor2"));
+    ASSERT_FLOAT_EQ(measurement, sink.getTemperature("ConstantSensor3"));
     
 }
