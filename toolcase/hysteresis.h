@@ -1,7 +1,5 @@
 #pragma once
 
-//#include <sensor-mock.h>
-//#include <switch-mock.h>
 #include <sensor.h>
 #include <switch.h>
 

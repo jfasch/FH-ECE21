@@ -1,6 +1,8 @@
 #include "switch-mock.h"
-#include <switch.h>
 
+
+
+using namespace std;
 
 MockSwitch::MockSwitch(State initial_state)//
 : _state(initial_state)
