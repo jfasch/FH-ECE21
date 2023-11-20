@@ -24,6 +24,7 @@ ADD_LIBRARY(
 
   display-led-stripe.h
   display-led-stripe.cpp
+
 )
 
 TARGET_INCLUDE_DIRECTORIES(
