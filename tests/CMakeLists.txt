@@ -26,6 +26,7 @@ ADD_EXECUTABLE(
   sensor-config-suite.cpp
   sink-suite.cpp
   logger-suite.cpp
+  sysfh-switch-suite.cpp
 
   # fixtures
   fixture-tmpdir.h
@@ -37,8 +38,8 @@ ADD_EXECUTABLE(
 
 TARGET_LINK_LIBRARIES(
   fh-ece21-suite
-  fh-ece21-logger
 
+  fh-ece21-logger
   fh-ece21-toolcase
   gtest_main 
 )
