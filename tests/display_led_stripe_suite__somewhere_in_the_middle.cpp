@@ -9,14 +9,14 @@
 TEST(display_led_stripe_suite, somewhere_in_the_middle)
 {
     MockSensor sensor(36.5);                    // <--- right in the middle of [0,80]
-    MockSwitch sw0(MockSwitch::OFF);
-    MockSwitch sw1(MockSwitch::OFF);
-    MockSwitch sw2(MockSwitch::OFF);
-    MockSwitch sw3(MockSwitch::OFF);
-    MockSwitch sw4(MockSwitch::OFF);
-    MockSwitch sw5(MockSwitch::OFF);
-    MockSwitch sw6(MockSwitch::OFF);
-    MockSwitch sw7(MockSwitch::OFF);
+    MockSwitch sw0(MockSwitch::State::OFF);
+    MockSwitch sw1(MockSwitch::State::OFF);
+    MockSwitch sw2(MockSwitch::State::OFF);
+    MockSwitch sw3(MockSwitch::State::OFF);
+    MockSwitch sw4(MockSwitch::State::OFF);
+    MockSwitch sw5(MockSwitch::State::OFF);
+    MockSwitch sw6(MockSwitch::State::OFF);
+    MockSwitch sw7(MockSwitch::State::OFF);
 
     std::vector<MockSwitch*> switches = { &sw0, &sw1, &sw2, &sw3, &sw4, &sw5, &sw6, &sw7 };
     LEDStripeDisplay display(
@@ -25,12 +25,12 @@ TEST(display_led_stripe_suite, somewhere_in_the_middle)
 
     display.check();
 
-    ASSERT_EQ(sw0.state(), MockSwitch::ON);
-    ASSERT_EQ(sw1.state(), MockSwitch::ON);
-    ASSERT_EQ(sw2.state(), MockSwitch::ON);
-    ASSERT_EQ(sw3.state(), MockSwitch::ON);
-    ASSERT_EQ(sw4.state(), MockSwitch::OFF);
-    ASSERT_EQ(sw5.state(), MockSwitch::OFF);
-    ASSERT_EQ(sw6.state(), MockSwitch::OFF);
-    ASSERT_EQ(sw7.state(), MockSwitch::OFF);
+    ASSERT_EQ(sw0.state(), MockSwitch::State::ON);
+    ASSERT_EQ(sw1.state(), MockSwitch::State::ON);
+    ASSERT_EQ(sw2.state(), MockSwitch::State::ON);
+    ASSERT_EQ(sw3.state(), MockSwitch::State::ON);
+    ASSERT_EQ(sw4.state(), MockSwitch::State::OFF);
+    ASSERT_EQ(sw5.state(), MockSwitch::State::OFF);
+    ASSERT_EQ(sw6.state(), MockSwitch::State::OFF);
+    ASSERT_EQ(sw7.state(), MockSwitch::State::OFF);
 }
