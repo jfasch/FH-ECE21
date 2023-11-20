@@ -2,41 +2,37 @@
 #include <string>
 #include <iostream>
 #include <vector>
+#include <map>
 #include <sink-logger.h>
 
-/**
- * @class SinkMock
- * @brief stores data given via a SensorValues object in an private map.
- * 
- * Inividual datapoitsncan be retreived via a getTemperature function
-*/
 class SinkMock : public SinkLogger
 {
     public:
         void output(SensorValues data)
         {
-            for (auto [name, value]: data)
+            for (auto [name, value] : data)
             {
-                if(_givenSensorValues.count(name)==0){
-                    std::vector<double> valuesVec;
-                    valuesVec.push_back(value);
-                    _givenSensorValues.insert(std::pair(name,valuesVec));
+                if (_givenSensorValues.find(name) == _givenSensorValues.end())
+                {
+                    _givenSensorValues[name] = std::vector<double>();
                 }
-                else{
-                    auto vec=_givenSensorValues.at(name);
-                    vec.push_back(value);
-                }
-                _givenSensorValues.insert(std::pair(name, value));
+                _givenSensorValues[name].push_back(value);
             }
-
         }
 
-        // returns the temperature for a given sensorname
-        auto getTemperature(std::string sensorName)
+        double getTemperature(std::string sensorName)
         {
-            return _givenSensorValues.at(sensorName);
+            if (_givenSensorValues.find(sensorName) != _givenSensorValues.end() && !_givenSensorValues[sensorName].empty())
+            {
+                return _givenSensorValues[sensorName][0];
+            }
+            else
+            {
+                std::cerr << "Sensor name not found or no readings available." << std::endl;
+                return 0.0;
+            }
         }
 
     private:
-        std::map<std::string, std::vector<double> > _givenSensorValues;
+        std::map<std::string, std::vector<double>> _givenSensorValues;
 };
