@@ -4,8 +4,8 @@
 #include <hysteresis.h>
 
 BoilingPot::BoilingPot(
-    MockSensor* sensor, 
-    MockSwitch* switcH) 
+    Sensor* sensor, 
+    Switch* switcH) 
 : _sensor(sensor),
   _switch(switcH),
   _hysteresis(_sensor, _switch, 0, 0)

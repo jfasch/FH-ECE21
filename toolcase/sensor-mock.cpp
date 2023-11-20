@@ -1,6 +1,7 @@
 #include "sensor-mock.h"
 
 
+
 MockSensor::MockSensor(double initial_temperature)
 : _temperature(initial_temperature) {}
 

@@ -1,16 +1,22 @@
 #include "switch-mock.h"
+#include <switch.h>
 
 
-MockSwitch::MockSwitch(State initial_state)
+MockSwitch::MockSwitch(State initial_state)//
 : _state(initial_state)
 {}
     
-void MockSwitch::on()
+void MockSwitch::set_state(bool state)
 {
-    _state = State::ON;
+    if (state == true) //
+    {
+       _state = MockSwitch::State::ON;  
+    }
+
+    if (state == false) //
+    {
+       _state = MockSwitch::State::OFF;  
+    }
+
 }
 
-void MockSwitch::off()
-{
-    _state = State::OFF;
-}

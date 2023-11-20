@@ -1,9 +1,12 @@
 #include "hysteresis.h"
+//#include <sensor.h>
+//#include <switch.h>
+
 
 
 Hysteresis::Hysteresis(
-    MockSensor* sensor, 
-    MockSwitch* switcH, 
+    Sensor* sensor, 
+    Switch* switcH, 
     double low, 
     double high)
 : _sensor(sensor),
@@ -16,9 +19,9 @@ void Hysteresis::check()
 {
     double current_temperature = _sensor->get_temperature();
     if (current_temperature < _low)
-        _switch->on();
+        _switch->set_state(true);  //on();
     else if (current_temperature > _high)
-        _switch->off();
+        _switch->set_state(false);  //off();
     else { /* leave as-is */ }
 }
 

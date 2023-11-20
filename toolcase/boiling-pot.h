@@ -3,17 +3,18 @@
 #include <sensor-mock.h>
 #include <switch-mock.h>
 #include <hysteresis.h>
+//#include <switch.h>
 
 class BoilingPot
 {
 public:
-    BoilingPot(MockSensor* sensor, MockSwitch* switcH);
+    BoilingPot(Sensor* sensor, Switch* switcH);
     void heat(double set_temperature);
     void check();
     
 private:
-    MockSensor* _sensor;
-    MockSwitch* _switch;
+    Sensor* _sensor;
+    Switch* _switch;
     Hysteresis _hysteresis;
     double _set_temperature;
 

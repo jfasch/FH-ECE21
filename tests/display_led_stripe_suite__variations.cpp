@@ -9,8 +9,8 @@
 TEST(display_led_stripe_suite, variation_2_switches)
 {
     MockSensor sensor(36.5);                    // <--- right in the middle of [0,80]
-    MockSwitch sw0(MockSwitch::OFF);
-    MockSwitch sw1(MockSwitch::OFF);
+    MockSwitch sw0(MockSwitch::State::OFF);
+    MockSwitch sw1(MockSwitch::State::OFF);
 
     std::vector<MockSwitch*> switches = { &sw0, &sw1 };
     LEDStripeDisplay display(
@@ -19,15 +19,15 @@ TEST(display_led_stripe_suite, variation_2_switches)
 
     display.check();
 
-    ASSERT_EQ(sw0.state(), MockSwitch::ON);
-    ASSERT_EQ(sw1.state(), MockSwitch::OFF);
+    ASSERT_EQ(sw0.state(), MockSwitch::State::ON);
+    ASSERT_EQ(sw1.state(), MockSwitch::State::OFF);
 }
 
 TEST(display_led_stripe_suite, variation_interval_not_from_0)
 {
     MockSensor sensor(10.7);                    // <--- right above low
-    MockSwitch sw0(MockSwitch::OFF);
-    MockSwitch sw1(MockSwitch::OFF);
+    MockSwitch sw0(MockSwitch::State::OFF);
+    MockSwitch sw1(MockSwitch::State::OFF);
 
     std::vector<MockSwitch*> switches = { &sw0, &sw1 };
     LEDStripeDisplay display(
@@ -36,13 +36,13 @@ TEST(display_led_stripe_suite, variation_interval_not_from_0)
 
     display.check();
 
-    ASSERT_EQ(sw0.state(), MockSwitch::ON);
-    ASSERT_EQ(sw1.state(), MockSwitch::OFF);
+    ASSERT_EQ(sw0.state(), MockSwitch::State::ON);
+    ASSERT_EQ(sw1.state(), MockSwitch::State::OFF);
 
     sensor.set_temperature(45.7);                      // <--- into second LED
 
     display.check();
 
-    ASSERT_EQ(sw0.state(), MockSwitch::ON);
-    ASSERT_EQ(sw1.state(), MockSwitch::ON);
+    ASSERT_EQ(sw0.state(), MockSwitch::State::ON);
+    ASSERT_EQ(sw1.state(), MockSwitch::State::ON);
 }
