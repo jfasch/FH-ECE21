@@ -24,6 +24,7 @@ ADD_EXECUTABLE(
   display_led_stripe_suite__movement.cpp
   display_led_stripe_suite__somewhere_in_the_middle.cpp
   display_led_stripe_suite__variations.cpp
+  hysteresis-set-range.cpp
 
   # fixtures
   fixture-tmpdir.h

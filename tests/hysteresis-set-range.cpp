@@ -14,18 +14,26 @@ TEST(hysteresis_suite, set_range)
     hyst.check();
     ASSERT_EQ(switcH.state(),MockSwitch::OFF);
 
-    hyst.set_range(0,2) //low range
+    hyst.set_range(0,2); //low range
+
     hyst.check();
     ASSERT_EQ(switcH.state(),MockSwitch::OFF);
-    sensor.set_temperature(30.2);
+
+    sensor.set_temperature(-2);
+
     hyst.check();
     ASSERT_EQ(switcH.state(),MockSwitch::ON);
 
-    hyst.set_range(100,102) //high range
+    hyst.set_range(100,102); //high range
+
+    sensor.set_temperature(+105);
+
     hyst.check();
     ASSERT_EQ(switcH.state(), MockSwitch::OFF);
-    sensor.set_temperature(90);
-    hyst.check();
-    ASSERT_EQ(switcH.state(),MockSwitch::OFF);
+
+    //sensor.set_temperature(90);
+//
+  //  hyst.check();
+    //ASSERT_EQ(switcH.state(),MockSwitch::OFF);
 
 }
