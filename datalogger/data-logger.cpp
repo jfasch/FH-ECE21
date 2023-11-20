@@ -14,20 +14,8 @@ DataLogger::DataLogger(SensorConfig* sensors, SinkLogger* sink, uint16_t interva
     _interval = interval;
 }
 
-void DataLogger::startLogging()
-{
-    std::string buffer;
 
-    while (1)
-    {
-        _measurements = _sensors->getAllMeasurements();
-        _sink->output(_measurements);
-        std::this_thread::sleep_for(std::chrono::milliseconds(_interval));
-    }
-}
-
-
-void DataLogger::startLogging(uint16_t count)
+void DataLogger::startLogging(uint16_t count = 0)
 {
     std::string buffer;
 

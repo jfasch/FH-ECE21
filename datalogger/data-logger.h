@@ -19,17 +19,6 @@ public:
     // starts logging for 'count' times
     void startLogging(uint16_t count);
 
-    std::string getTime()
-    {
-        time_t currentTime;
-        time(&currentTime);
-        timeBuffer = ctime(&currentTime);
-        timeBuffer.erase(20, 5); // remove newline 
-        return timeBuffer;
-    }
-    
-
-
 private:
     SinkLogger* _sink;
     SensorConfig* _sensors;
