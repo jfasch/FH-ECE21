@@ -14,3 +14,8 @@ ADD_EXECUTABLE(map map.cpp)
 >>>>>>> 16a786f80f6c84685e166f85426d565bbdf0ff7d
 ADD_EXECUTABLE(data-logger-test data-logger-test.cpp)
 TARGET_LINK_LIBRARIES(data-logger-test fh-ece21-toolcase fh-ece21-logger)
+
+IF (${MOSQUITTO_FOUND})
+  ADD_EXECUTABLE(mosquitto-publish-demo mosquitto-publish-demo.cpp)
+  TARGET_LINK_LIBRARIES(mosquitto-publish-demo Mosquitto::Mosquitto)
+ENDIF()
