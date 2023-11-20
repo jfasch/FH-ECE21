@@ -20,10 +20,11 @@ ADD_LIBRARY(
   display-led-stripe.h
   display-led-stripe.cpp
 
-
   sysfs-switch.cpp
   sysfs-switch.h
 
+  pwm_controll.h
+  pwm_controll.cpp
 )
 
 TARGET_INCLUDE_DIRECTORIES(
