@@ -8,5 +8,6 @@ ADD_EXECUTABLE(const-and-refs const-and-refs.cpp)
 ADD_EXECUTABLE(member-initialization member-initialization.cpp)
 ADD_EXECUTABLE(vector vector.cpp)
 ADD_EXECUTABLE(map map.cpp)
+ADD_EXECUTABLE(to-string to-string.cpp)
 
 ADD_SUBDIRECTORY(unittesting)
