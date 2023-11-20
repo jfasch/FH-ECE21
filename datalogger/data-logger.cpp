@@ -25,10 +25,11 @@ void DataLogger::startLogging(uint16_t count = 0)
         endlessLoop = true;
     }
 
-    while (count-- || (endlessLoop == true))
+    while ( (count > 0) || (endlessLoop == true))
     {
         _measurements = _sensors->getAllMeasurements();
         _sink->output(_measurements);
+        count = (count > 0) ? count-1 : 0;
         std::this_thread::sleep_for(std::chrono::milliseconds(_interval));
     }
 }
