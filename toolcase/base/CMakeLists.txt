@@ -24,8 +24,8 @@ ADD_LIBRARY(
   sysfs-switch.cpp
   sysfs-switch.h
 
-  pwm_controll.h
-  pwm_controll.cpp
+  pwm_controller.h
+  pwm_controller.cpp
 )
 
 TARGET_INCLUDE_DIRECTORIES(

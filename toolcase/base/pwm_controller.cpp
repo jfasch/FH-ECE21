@@ -1,9 +1,7 @@
-#include "pwm_controll.h"
-
-#define PERIOD 1000000
+#include "pwm_controller.h"
 
 
-void LEDDisplay::set_percentage(int percentage)
+void PWMController::set_percentage(int percentage)
     {
 		if(percentage < 0 || percentage > 100)
 		{
