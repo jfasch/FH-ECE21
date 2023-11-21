@@ -20,7 +20,8 @@ public:
 
 int main(int argc, char** argv)
 {
-    if (argc != 2 || argc != 3) {
+    cout << argc << endl;
+    if (argc != 2 && argc != 3) {
         cerr << "Usage: " << argv[0] << " TEMPERATURE-FILE [GPIO-NUMBER]\n";
         cerr << "    TEMPERATURE-FILE   contains temperature in milli-celsius\n";
         cerr << "    GPIO-NUMBER        gpio number (as per raspi pinout)\n";
@@ -42,7 +43,7 @@ int main(int argc, char** argv)
 
 
     BoilingPot pot(&sensor, switcH.get());
-    // pot.configure(37.5);
+
     pot.heat(37.5);
 
     while (true) {
