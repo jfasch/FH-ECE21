@@ -1,5 +1,5 @@
 ADD_LIBRARY(
-  fh-ece21-logger
+  fh-ece21-data-logger
 
   sensor-values.h
   sensor-config.h
@@ -12,9 +12,9 @@ ADD_LIBRARY(
 
 )
 
-target_link_libraries(fh-ece21-logger fh-ece21-toolcase)
+TARGET_LINK_LIBRARIES(fh-ece21-data-logger fh-ece21-base)
 TARGET_INCLUDE_DIRECTORIES(
-  fh-ece21-toolcase
+  fh-ece21-data-logger
 
   PUBLIC
   .
