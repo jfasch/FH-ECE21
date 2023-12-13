@@ -1,9 +1,9 @@
 #pragma once
 
-#include <sensor-mock.h>
-#include <switch-mock.h>
+#include <sensor.h>
+#include <switch.h>
+#include <percentage-display.h>
 #include <hysteresis.h>
-//#include <switch.h>
 
 class BoilingPot
 {
@@ -16,7 +16,7 @@ public:
     };
 
 public:
-    BoilingPot(Sensor*, Switch*, Reporter*);
+    BoilingPot(Sensor*, Switch*, Reporter*, PercentageDisplay*);
     void heat(double set_temperature);
     void check();
     

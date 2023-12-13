@@ -6,7 +6,8 @@
 BoilingPot::BoilingPot(
     Sensor* sensor, 
     Switch* switcH, 
-    Reporter*) 
+    Reporter*,
+    PercentageDisplay*) 
 : _sensor(sensor),
   _switch(switcH),
   _hysteresis(_sensor, _switch, 0, 0)

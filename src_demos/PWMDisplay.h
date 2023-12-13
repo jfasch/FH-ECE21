@@ -12,6 +12,3 @@ public:
     void setPeriod();
     void setPercentage(unsigned long percentage) override;  // Add this line
 };
-
-
-

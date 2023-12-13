@@ -42,7 +42,7 @@ int main(int argc, char** argv)
         switcH = make_unique<StdOutSwitch>();
 
 
-    BoilingPot pot(&sensor, switcH.get(), /*reporter*/nullptr);
+    BoilingPot pot(&sensor, switcH.get(), /*reporter*/nullptr, /*percentage-display*/nullptr);
 
     pot.heat(37.5);
 
