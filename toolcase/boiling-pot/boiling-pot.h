@@ -8,7 +8,15 @@
 class BoilingPot
 {
 public:
-    BoilingPot(Sensor* sensor, Switch* switcH);
+    class Reporter
+    {
+    public:
+        virtual ~Reporter() {}
+        virtual void report(bool switch_state, double current_temperature) = 0;
+    };
+
+public:
+    BoilingPot(Sensor*, Switch*, Reporter*);
     void heat(double set_temperature);
     void check();
     

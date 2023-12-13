@@ -5,7 +5,8 @@
 
 BoilingPot::BoilingPot(
     Sensor* sensor, 
-    Switch* switcH) 
+    Switch* switcH, 
+    Reporter*) 
 : _sensor(sensor),
   _switch(switcH),
   _hysteresis(_sensor, _switch, 0, 0)
