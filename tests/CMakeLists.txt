@@ -28,6 +28,7 @@ ADD_EXECUTABLE(
   hysteresis-set-range.cpp
 
   sensor-config-suite.cpp
+  sensor-values-suite.cpp
   sink-suite.cpp
   logger-suite.cpp
 

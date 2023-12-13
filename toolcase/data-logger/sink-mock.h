@@ -12,22 +12,14 @@
 */
 class SinkMock : public SinkLogger
 {
-    public:
-        void output(SensorValues data)
-        {
-            for (auto [name, value]: data)
-            {
-                _givenSensorValues.insert({name, value});
-            }
+public:
+    void output(SensorValues data)
+    {
+        _measurements.push_back(data);
+    }
+    size_t size() const { return _measurements.size(); }
+    const SensorValues& operator[](size_t i) const { return _measurements[i]; }
 
-        }
-
-        // returns the temperature for a given sensorname
-        double getTemperature(std::string sensorName)
-        {
-            return _givenSensorValues[sensorName];
-        }
-
-    private:
-        std::map<std::string, double> _givenSensorValues;
+private:
+    std::vector<SensorValues> _measurements;
 };
