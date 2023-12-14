@@ -3,6 +3,7 @@
 #include <sensor-values.h>
 #include <string>
 #include <map>
+#include <stdexcept>  
 
 /**
  * @class Sesnorconfig
@@ -21,6 +22,8 @@ public:
     bool addSensor(std::string name, Sensor *sensor)
     {
         auto [ptr, result] = _sensors.insert(std::pair(name, sensor));
+        if (result == false)
+            throw std::runtime_error("Error: Sensor already added!");
         return result;
     }
 

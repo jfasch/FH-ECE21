@@ -23,7 +23,7 @@ int main()
     
     SinkTerminal sink;
     DataLogger logger(&config, &sink, 1000/*ms*/);
-    logger.startLogging();
+    logger.startLogging(5);
 
     return 0;
 }

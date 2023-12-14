@@ -20,7 +20,7 @@ TEST(sink_suite, MockSinkTest)
     cfg.addSensor("sensor-1", &s1);
     cfg.addSensor("sensor-2", &s2);
 
-    SensorValues values = cfg.getAllMeasurements();
+    values = cfg.getAllMeasurements();
 
     sink.output(values);
 
