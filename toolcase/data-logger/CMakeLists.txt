@@ -11,7 +11,6 @@ ADD_LIBRARY(
   data-logger.cpp
 
   sink-MQTT.h
-  
 )
 
 TARGET_LINK_LIBRARIES(fh-ece21-data-logger fh-ece21-base)

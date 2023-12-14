@@ -23,7 +23,7 @@ public:
     ~SinkMQTT(){}
 
 
-    void output(SensorValues data) override
+    void output(const SensorValues& data) override
     {
         std::string msg;
         // create json like string
@@ -43,7 +43,7 @@ public:
     }
 
 private:
-    MQTT * _client;
+    MQTT* _client;
     std::string _host;
     int _port;
     std::string _topic;    
