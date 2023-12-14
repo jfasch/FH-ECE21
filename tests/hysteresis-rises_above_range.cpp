@@ -6,15 +6,15 @@
 TEST(hysteresis_suite, rises_above_range)
 {
     MockSensor sensor(30.2);
-    MockSwitch switcH(MockSwitch::OFF);
+    MockSwitch switcH(MockSwitch::State::OFF);
 
     Hysteresis hyst(&sensor, &switcH, 20.1, 30.4);
 
     hyst.check();
-    ASSERT_EQ(switcH.state(), MockSwitch::OFF);
+    ASSERT_EQ(switcH.state(), MockSwitch::State::OFF);
 
     sensor.set_temperature(35);                        // <--- rises above range
 
     hyst.check();
-    ASSERT_EQ(switcH.state(), MockSwitch::OFF);
+    ASSERT_EQ(switcH.state(), MockSwitch::State::OFF);
 }
