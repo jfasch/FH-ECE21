@@ -1,0 +1,3 @@
+ADD_SUBDIRECTORY(base)
+ADD_SUBDIRECTORY(boiling-pot)
+ADD_SUBDIRECTORY(data-logger)

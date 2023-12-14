@@ -1,4 +1,4 @@
-#include "pwm_controll.h"
+#include "pwm_controller.h"
 #include <chrono>
 #include <thread>
 #include <stdexcept>

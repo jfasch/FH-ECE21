@@ -1,26 +1,17 @@
 #pragma once
 
-#include <switch-mock.h>
-//#include <switch.h> //
-#include <sensor-mock.h>
-
+#include <switch.h>
 #include <vector>
+#include <stdexcept>
+#include "percentage-display.h"
 
-
-class LEDStripeDisplay
+class LEDStripeDisplay : public PercentageDisplay
 {
 public:
-    LEDStripeDisplay(
-        double low, double high, 
-        MockSensor* sensor, 
-        const std::vector<MockSwitch*>& leds) //
-    : _low(low), _high(high), _sensor(sensor), _leds(leds) {}
-
-    void check();
+    LEDStripeDisplay(const std::vector<Switch*>& leds);
+    void show_percentage(double percentage);
 
 private:
-    double _low;
-    double _high;
-    MockSensor* _sensor;
-    std::vector<MockSwitch*> _leds; //
+    std::vector<Switch*> _leds;
 };
+
