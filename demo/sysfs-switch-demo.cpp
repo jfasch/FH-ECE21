@@ -1,4 +1,4 @@
-#include <switch-sysfs.h>
+#include <sysfs-switch.h>
 #include <unistd.h>
 
 int main()

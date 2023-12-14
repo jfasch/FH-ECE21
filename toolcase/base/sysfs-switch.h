@@ -1,16 +1,13 @@
 #ifndef SYSFS_SWITCH_H
 #define SYSFS_SWITCH_H
 
-#include <fcntl.h>
-#include <unistd.h>
-#include <cstring>
-#include <iostream>
+#include "switch.h"
 
-class SysFSGPIOSwitch
+class SysFSGPIOSwitch : public Switch
 {
 public:
     SysFSGPIOSwitch(int gpioPin);
-    void set_state(bool state);
+    void set_state(bool state) override;
     bool get_state();
     ~SysFSGPIOSwitch();
 

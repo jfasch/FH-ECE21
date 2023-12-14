@@ -9,14 +9,14 @@
 #include <errno.h>
 
 
-class LEDDisplay
+class PWMController
 {
-    private:
+private:
         std::string _path;
         unsigned int _period;
         std::string _channel;
-    public:
-    LEDDisplay(std::string controller_path, unsigned int period,unsigned int channel)
+public:
+    PWMController(std::string controller_path, unsigned int period,unsigned int channel)
     {
         _path = controller_path;
         _period = period;

@@ -1,4 +1,4 @@
-#include "pwm_controll.h"
+#include "pwm_controller.h"
 #include <chrono>
 #include <thread>
 #include <stdexcept>
@@ -10,7 +10,7 @@ int main()
 {
 	while(true)
 	{
-		LEDDisplay display(CONTROLLER_PATH,PERIOD,10); 
+		PWMController display(CONTROLLER_PATH,PERIOD,10); 
 		for(int i = 0;i <= 100;i++)
 		{
 			display.set_percentage(i);

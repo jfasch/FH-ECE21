@@ -8,36 +8,32 @@
 
 
 
-TEST(sensor_config_suite, Sensorconfig_Test)
+TEST(sensor_config_suite, get_measurements)
 {
-    float measurement = 36.4;
-    ConstantSensor cs(measurement);
     SensorConfig cfg;
-    
-    ASSERT_TRUE(cfg.addSensor("Sensor1", &cs));
-    ASSERT_TRUE(cfg.addSensor("Sensor2", &cs));
-    ASSERT_TRUE(cfg.addSensor("Sensor3", &cs));
-    ASSERT_FALSE(cfg.addSensor("Sensor3", &cs));
+    ConstantSensor s1(37.1);
+    ConstantSensor s2(37.2);
+    ConstantSensor s3(37.3);
+    cfg.addSensor("sensor-1", &s1);
+    cfg.addSensor("sensor-2", &s2);
+    cfg.addSensor("sensor-3", &s3);
+
     SensorValues values = cfg.getAllMeasurements();
 
-    ASSERT_FLOAT_EQ(values.getMeasurement("Sensor1"), measurement);
-    ASSERT_FLOAT_EQ(values.getMeasurement("Sensor2"), measurement);
-    ASSERT_FLOAT_EQ(values.getMeasurement("Sensor3"), measurement);
-
+    ASSERT_EQ(values.size(), 3);
+    ASSERT_FLOAT_EQ(values.getMeasurement("sensor-1"), 37.1);
+    ASSERT_FLOAT_EQ(values.getMeasurement("sensor-2"), 37.2);
+    ASSERT_FLOAT_EQ(values.getMeasurement("sensor-3"), 37.3);
 }
 
-TEST(sensor_config_suite, SensorValues_Test)
+TEST(sensor_config_suite, duplicate_sensor)
 {
-    float measurement = 36.4;
+    SensorConfig cfg;
 
-    SensorValues values;
-    ASSERT_TRUE(values.addMeasurement("value1", measurement	));
-    ASSERT_TRUE(values.addMeasurement("value2", measurement	));
-    ASSERT_FALSE(values.addMeasurement("value1", measurement));
+    ConstantSensor s1(37.1);
+    ConstantSensor s2(37.2);
+    cfg.addSensor("sensor-1", &s1);
 
-    ASSERT_FLOAT_EQ(values.getMeasurement("value1"), measurement);
-    ASSERT_FLOAT_EQ(values.getMeasurement("value1"), measurement);
-
-
+    ASSERT_THROW(cfg.addSensor("sensor-1", &s2), std::runtime_error);
 }
 

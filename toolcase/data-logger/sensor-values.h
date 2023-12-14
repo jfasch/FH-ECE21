@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 #include <map>
 
@@ -22,16 +23,16 @@ public:
         return result;
     }
 
-    double getMeasurement(std::string name)
+    double getMeasurement(std::string name) const
     {
         return _measuredData.at(name);
     }
 
 
-    auto begin()       { return _measuredData.begin(); }
-    auto end()          { return _measuredData.end(); }
+    auto begin() const { return _measuredData.begin(); }
+    auto end() const { return _measuredData.end(); }
+    auto size() const { return _measuredData.size(); }
 
 private:
     std::map<std::string, float> _measuredData;
 };
-

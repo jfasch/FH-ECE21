@@ -5,12 +5,13 @@
 
 BoilingPot::BoilingPot(
     Sensor* sensor, 
-    Switch* switcH) 
+    Switch* switcH, 
+    Reporter*,
+    PercentageDisplay*) 
 : _sensor(sensor),
   _switch(switcH),
   _hysteresis(_sensor, _switch, 0, 0)
 {}
-
 
 void BoilingPot::heat(double set_temperature)
 {

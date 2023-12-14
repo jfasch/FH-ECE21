@@ -1,5 +1,11 @@
 #include "sysfs-switch.h"
 
+#include <fcntl.h>
+#include <unistd.h>
+#include <cstring>
+#include <iostream>
+
+
 SysFSGPIOSwitch::SysFSGPIOSwitch(int gpioPin) : pinNumber(gpioPin)
 {
     exportGPIO();

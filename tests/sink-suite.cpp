@@ -9,18 +9,25 @@
 
 TEST(sink_suite, MockSinkTest)
 {
-    float measurement = 36.4;
+    const std::string sensorName = "ConstantSensor";
+
+    ConstantSensor s1(37.1);
+    ConstantSensor s2(37.2);
+    SensorConfig cfg;
     SinkMock sink;
     SensorValues values;
 
-    values.addMeasurement("Value1", measurement);
-    values.addMeasurement("Value2", measurement);
+    cfg.addSensor("sensor-1", &s1);
+    cfg.addSensor("sensor-2", &s2);
+
+    SensorValues values = cfg.getAllMeasurements();
 
     sink.output(values);
 
-    //ASSERT_FLOAT_EQ(sink.getTemperature("Value1"), measurement);
-    //ASSERT_FLOAT_EQ(sink.getTemperature("Value2"), measurement);
-
+    ASSERT_EQ(sink.size(), 1);
+    ASSERT_EQ(sink[0].size(), 2);
+    ASSERT_FLOAT_EQ(sink[0].getMeasurement("sensor-1"), 37.1);
+    ASSERT_FLOAT_EQ(sink[0].getMeasurement("sensor-2"), 37.2);
 }
 
 

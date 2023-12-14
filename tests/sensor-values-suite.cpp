@@ -1,22 +1,21 @@
-#include <gtest/gtest.h>
-#include <fstream>
-#include <string>
 #include <sensor-values.h>
 
+#include <gtest/gtest.h>
 
-
-TEST(sensor_config_suite, SensorValues_Test)
+TEST(sensor_values_suite, basic)
 {
-    float measurement = 36.4;
-
     SensorValues values;
-    ASSERT_TRUE(values.addMeasurement("value1", measurement	));
-    ASSERT_TRUE(values.addMeasurement("value2", measurement	));
-    ASSERT_FALSE(values.addMeasurement("value1", measurement));
+    values.addMeasurement("sensor-a", 37.5);
+    values.addMeasurement("sensor-b", 42.3);
 
-    ASSERT_FLOAT_EQ(values.getMeasurement("value1"), measurement);
-    ASSERT_FLOAT_EQ(values.getMeasurement("value1"), measurement);
-
-
+    ASSERT_EQ(values.size(), 2);
+    ASSERT_FLOAT_EQ(values.getMeasurement("sensor-a"), 37.5);
+    ASSERT_FLOAT_EQ(values.getMeasurement("sensor-b"), 42.3);
 }
 
+TEST(sensor_values_suite, error)
+{
+    SensorValues values;
+
+    ASSERT_THROW(values.getMeasurement("not-exist"), std::out_of_range);
+}
