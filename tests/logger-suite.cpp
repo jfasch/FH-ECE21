@@ -65,8 +65,17 @@ TEST_F(logger_suite, LoggerFileTest)
     cfg.addSensor("ConstantSensor2", &cs2);
     cfg.addSensor("ConstantSensor3", &cs3);
 
-    const std::string testFileName = dirname / "loggerFileTest";
-    SinkFile sink(testFileName);
+    const std::string testFileName = dirname / "loggerFileTest.csv";
+    
+    // Define column mapping
+    std::vector<std::pair<std::string, std::string>> columnMapping = {
+        {"ConstantSensor1", "ConstantSensor1"},
+        {"ConstantSensor2", "ConstantSensor2"},
+        {"ConstantSensor3", "ConstantSensor3"}
+    };
+
+    // Create SinkFile object with the filename and column mapping
+    SinkFile sink(testFileName, columnMapping);
 
     DataLogger logger(&cfg, &sink, 5);
 
@@ -75,13 +84,17 @@ TEST_F(logger_suite, LoggerFileTest)
     ASSERT_TRUE(std::filesystem::exists(testFileName));
 
     std::ifstream file(testFileName);
+    ASSERT_TRUE(file.is_open());
+
     std::string line;
+
+    // Read and validate the header line
     std::getline(file, line);
-    EXPECT_EQ(line, "ConstantSensor1; 36.4");
+    EXPECT_EQ(line, "ConstantSensor1;ConstantSensor2;ConstantSensor3;");
+
+    // Read and validate the data line
     std::getline(file, line);
-    EXPECT_EQ(line, "ConstantSensor2; 36.5");
-    std::getline(file, line);
-    EXPECT_EQ(line, "ConstantSensor3; 36.6");
+    EXPECT_EQ(line, "36.4;36.5;36.6;");
 
     file.close();
 }

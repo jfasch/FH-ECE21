@@ -31,25 +31,40 @@ TEST(sink_suite, MockSinkTest)
 }
 
 
-TEST(sink_suite, FileSinkTest)
+TEST(sink_suite, FileSinkTest) 
 {
-    const std::string testFileName = "sinkFileTest";
-    SinkFile sink(testFileName);
+    const std::string testFileName = "sinkFileTest.csv";
+    std::vector<std::pair<std::string, std::string>> columnMapping = {
+        { "Column1", "Sensor1" },
+        { "Column2", "Sensor2" }
+    };
+    SinkFile sink(testFileName, columnMapping);
     SensorValues values;
     values.addMeasurement("Sensor1", 36.4);
-    values.addMeasurement("Sensor2", 36.4);
+    values.addMeasurement("Sensor2", 36.5);
 
     sink.output(values);
 
     ASSERT_TRUE(std::filesystem::exists(testFileName));
 
     std::ifstream file(testFileName);
-    std::string line;
-    std::getline(file, line);
-    EXPECT_EQ(line, "Sensor1; 36.4");
-    std::getline(file, line);
-    EXPECT_EQ(line, "Sensor2; 36.4");
+    ASSERT_TRUE(file.is_open());
+
+    std::string headerLine;
+    std::getline(file, headerLine);
+    EXPECT_EQ(headerLine, "Column1;Column2;");
+
+    std::string dataLine;
+    std::getline(file, dataLine);
+    std::stringstream ss(dataLine);
+    std::string value;
+
+    std::getline(ss, value, ';');
+    EXPECT_EQ(value, "36.4");
+
+    std::getline(ss, value, ';');
+    EXPECT_EQ(value, "36.5");
 
     file.close();
-    std::remove(testFileName.c_str());
+    std::filesystem::remove(testFileName);
 }

@@ -13,7 +13,7 @@
 class SinkMock : public SinkLogger
 {
 public:
-    void output(SensorValues data)
+    void output(const SensorValues& data) override
     {
         _measurements.push_back(data);
     }
