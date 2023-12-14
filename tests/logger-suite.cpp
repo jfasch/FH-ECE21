@@ -96,3 +96,25 @@ TEST_F(logger_suite, LoggerFileTest) {
 
     file.close();
 }
+
+TEST_F(logger_suite, SinkFileCreationWithExistingFileTest) {
+    const std::string testFileName = dirname / "loggerFileTest.csv";
+
+    // Create a file with the same name first to simulate an existing file
+    {
+        std::ofstream existingFile(testFileName);
+        ASSERT_TRUE(existingFile.is_open());
+        existingFile << "Some content";
+    }
+
+    // Now try to create a SinkFile with the same file name, expecting an exception
+    try {
+        SinkFile sink(testFileName);
+        FAIL() << "Expected std::runtime_error due to file already existing";
+    } catch (const std::runtime_error& err) {
+        // Verify that the exception message matches the expected error
+        EXPECT_EQ(err.what(), std::string("File already exists: ") + testFileName);
+    } catch (...) {
+        FAIL() << "Expected std::runtime_error, caught different exception";
+    }
+}
