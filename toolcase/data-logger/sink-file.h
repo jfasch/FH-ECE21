@@ -18,9 +18,10 @@
  */
 class SinkFile : public SinkLogger {
 public:
-    explicit SinkFile(const std::string& filename,
-                      const std::vector<std::pair<std::string, std::string>>& columnMapping)
-        : _outFile(filename, std::ios::out) {  // Open the file in overwrite mode
+        explicit SinkFile(const std::string& filename,
+                  const std::vector<std::pair<std::string, std::string>>& columnMapping)
+    : _outFile(filename, std::ios::out), _columnMapping(columnMapping) { // ... rest of the code
+
         if (!_outFile) {
             throw std::runtime_error("Unable to open file: " + filename);
         }

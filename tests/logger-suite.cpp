@@ -55,8 +55,7 @@ TEST_F(logger_suite, LoggerBasicTest)
     ASSERT_FLOAT_EQ(sink[1].getMeasurement("Sensor3"), 37.3);
 }
 
-TEST_F(logger_suite, LoggerFileTest)
-{
+TEST_F(logger_suite, LoggerFileTest) {
     SensorConfig cfg;
     ConstantSensor cs1(36.4);
     ConstantSensor cs2(36.5);
@@ -67,14 +66,13 @@ TEST_F(logger_suite, LoggerFileTest)
 
     const std::string testFileName = dirname / "loggerFileTest.csv";
     
-    // Define column mapping
-    std::vector<std::pair<std::string, std::string>> columnMapping = {
+    std::vector<std::pair<std::string, std::string>> columnMapping = 
+    {
         {"ConstantSensor1", "ConstantSensor1"},
         {"ConstantSensor2", "ConstantSensor2"},
         {"ConstantSensor3", "ConstantSensor3"}
     };
 
-    // Create SinkFile object with the filename and column mapping
     SinkFile sink(testFileName, columnMapping);
 
     DataLogger logger(&cfg, &sink, 5);
