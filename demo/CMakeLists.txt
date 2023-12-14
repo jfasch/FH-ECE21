@@ -6,7 +6,13 @@ TARGET_LINK_LIBRARIES(display-demo fh-ece21-base)
 
 IF (MOSQUITTO_FOUND)
   ADD_EXECUTABLE(mosquitto-publish-demo mosquitto-publish-demo.cpp)
-  TARGET_LINK_LIBRARIES(mosquitto-publish-demo Mosquitto::Mosquitto)
+  TARGET_LINK_LIBRARIES(mosquitto-publish-demo Mosquitto::Mosquitto fh-ece21-base)
+
+  ADD_EXECUTABLE(mqtt-logger-demo mqtt-logger-demo.cpp)
+  TARGET_LINK_LIBRARIES(mqtt-logger-demo
+  fh-ece21-data-logger
+  fh-ece21-base)
+  
 ENDIF()
 
 ADD_EXECUTABLE(sysfs-switch-test sysfs-switch-test.cpp)
