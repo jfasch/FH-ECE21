@@ -2,6 +2,8 @@
 #include <cstdio>
 #include <iostream>
 #include <cassert>
+#include <MQTT_publisher.h>
+
 
 
 static const char id[] = "my_client";
@@ -51,6 +53,8 @@ int main(int argc, char** argv)
     // <cleanup>
     mosquitto_destroy(client);
     // </cleanup>
+
+   
 
     return 0;
 }

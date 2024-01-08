@@ -6,6 +6,8 @@
 #include <sink-mock.h>
 #include <filesystem>
 #include <sink-file.h>
+#include <sink-MQTT.h>
+#include <MQTT_mock.h>
 
 TEST(sink_suite, MockSinkTest)
 {
@@ -67,4 +69,28 @@ TEST(sink_suite, FileSinkTest)
 
     file.close();
     std::filesystem::remove(testFileName);
+}
+
+TEST(sink_suite, MQTTSinkTest)
+{
+
+    MQTTMock client;
+    SinkMQTT sink(client);
+    
+
+    SensorValues values;
+    values.addMeasurement("S1", 36);
+    values.addMeasurement("S2", 38);
+
+    // print values to MQTT client
+    sink.output(values);
+    values.addMeasurement("S3", 37);
+    sink.output(values);
+    
+    std::string msg1 = client.getBuffer();
+    std::string msg2 = client.getBuffer();
+    std::string comp1 = "{ \"S1\" : 36.000000, \"S2\" : 38.000000 }";
+    std::string comp2 = "{ \"S1\" : 36.000000, \"S2\" : 38.000000, \"S3\" : 37.000000 }";
+    EXPECT_STREQ(msg1.c_str(), comp1.c_str());
+    EXPECT_STREQ(msg2.c_str(), comp2.c_str());
 }
