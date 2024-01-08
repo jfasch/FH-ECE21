@@ -9,13 +9,14 @@
 class SysFSGPIOSwitch
 {
 public:
-    SysFSGPIOSwitch(int gpioPin);
+    SysFSGPIOSwitch(int gpioPin, int actLow);
     void set_state(bool state);
     bool get_state();
     ~SysFSGPIOSwitch();
 
 private:
     int pinNumber;
+    int activeLow;
     void exportGPIO();
     void configureOutput();
     void unexportGPIO();
