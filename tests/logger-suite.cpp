@@ -96,3 +96,9 @@ TEST_F(logger_suite, LoggerFileTest) {
 
     file.close();
 }
+
+// TEST_F(..., error_file_exists)
+// {
+//     create file;
+//     ASSERT_THROWS(SinkFile(existing file), std::runtime_error);
+// }
