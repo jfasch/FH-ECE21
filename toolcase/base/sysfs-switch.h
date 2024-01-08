@@ -6,7 +6,7 @@
 class SysFSGPIOSwitch : public Switch
 {
 public:
-    SysFSGPIOSwitch(int gpioPin, int actLow);
+    SysFSGPIOSwitch(int gpioPin, int actLow = 0);
     void set_state(bool state) override;
     bool get_state();
     ~SysFSGPIOSwitch();
