@@ -8,7 +8,10 @@
 class LEDStripeDisplay : public PercentageDisplay
 {
 public:
-    LEDStripeDisplay(const std::vector<Switch*>& leds);
+    LEDStripeDisplay(const std::vector<Switch*>& leds)
+    {
+        _leds = leds;
+    }
     void show_percentage(double percentage);
 
 private:

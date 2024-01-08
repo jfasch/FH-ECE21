@@ -7,7 +7,7 @@
 const std::string CONTROLLER_PATH = "/sys/class/pwm/pwmchip0";
 #define PERIOD 1000000
 
-std::vector<LEDDisplay> display;
+std::vector<PWMController> display;
 
 int main()
 {
@@ -20,7 +20,7 @@ int main()
 	{
 		for(int j = k;j < 10;j++)
 		{
-			display[k].set_percentage(i);
+			display[k].show_percentage(i);
 			k++;
 			break;
 		}
