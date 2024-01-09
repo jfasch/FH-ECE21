@@ -23,7 +23,8 @@ public:
 private:
     Sensor* _sensor;
     Switch* _switch;
+    Reporter* _reporter;
+    PercentageDisplay* _percentage_display;
     Hysteresis _hysteresis;
     double _set_temperature;
-
 };
