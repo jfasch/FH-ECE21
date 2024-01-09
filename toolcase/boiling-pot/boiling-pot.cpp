@@ -26,8 +26,7 @@ void BoilingPot::check()
     if(_percentage_display)
     {
         double t = _sensor->get_temperature();
-        double t_Disp
-        _percentage_display->show_percentage(t_Display);
+        _percentage_display->show_percentage(t/100);
     }
 }
 
