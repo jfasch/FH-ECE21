@@ -6,6 +6,7 @@
 #include <cassert>
 #include <fcntl.h>
 #include <unistd.h>
+#include <stdexcept>  
 
 
 class W1Sensor : public Sensor
@@ -16,14 +17,16 @@ public:
         _filename = filename;
     }
 
-    double get_temperature()
+    double get_temperature() override
     { 
         int fd = open(this->_filename.c_str(), O_RDONLY);
-        assert(fd != -1);    // <--- crashes program
+        if (fd == -1)
+            throw std::runtime_error(std::string("Cannot open ") + _filename);
         
         char buffer[32];
         ssize_t nread = read(fd, buffer, sizeof(buffer));
-        assert(nread != -1);
+        if (nread == -1) 
+            throw std::runtime_error(std::string("Cannot read ") + _filename);
 
         int error = close(fd);
         assert(error != -1);
@@ -36,6 +39,3 @@ public:
 private:
     std::string _filename;
 };
-
-
-
