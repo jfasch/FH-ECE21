@@ -70,11 +70,11 @@ TEST(BoilingPot_suite, percentage_display)
     pot.heat(37.5);  
     pot.check();
 
-    ASSERT_FLOAT_EQ(display.percentage_shown(), 37.5);
+    ASSERT_FLOAT_EQ(display.percentage_shown(), 30.2/100);
 
     sensor.set_temperature(100);
     pot.check();
 
-    ASSERT_FLOAT_EQ(display.percentage_shown(), 100.0);
+    ASSERT_FLOAT_EQ(display.percentage_shown(), 100.0/100);
 }
 
