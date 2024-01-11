@@ -4,6 +4,7 @@
 #include <display-led-stripe.h>
 #include <sysfs-switch.h>
 #include <pwm_controller.h>
+#include <display-pwm-stripe.h>
 #include <composite-display.h>
 
 #include <iostream>
@@ -54,11 +55,11 @@ int main(int argc, char** argv)
 
     std::vector<Switch*> leds{&sw1,&sw2,&sw3,&sw4,&sw5,&sw6,&sw7,&sw8,&sw9,&sw10};
 
-    const std::string CONTROLLER_PATH = "/sys/class/pwm/pwmchip0";
-    const uint period = 1000000;
+  
 
     LEDStripeDisplay display1(leds);
-    PWMController display2(CONTROLLER_PATH,period,1);
+    PWMStripeDisplay display2;
+
 
     std::vector<PercentageDisplay*> displays{&display1,&display2};
 
@@ -67,7 +68,7 @@ int main(int argc, char** argv)
 
     BoilingPot pot(&sensor, switcH.get(), /*reporter*/nullptr, &compositedisplay);
 
-    pot.heat(100);
+    pot.heat(55);
 
     while (true) {
         sleep(1);

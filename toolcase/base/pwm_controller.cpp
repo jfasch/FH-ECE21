@@ -46,7 +46,7 @@ void PWMController::show_percentage(double percentage)
 	percentage *= 100;
 	if (percentage < 0 || percentage > 100)
 	{
-		throw std::runtime_error("Input has to be between 0 and 100!");
+		throw std::runtime_error("Input has to be between 0 and 100!(pwm_controller)");
 	}
 
 	int duty_file_descriptor = open((_path + "/pwm" + _channel + "/duty_cycle").c_str(), O_WRONLY);
