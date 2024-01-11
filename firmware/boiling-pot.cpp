@@ -1,6 +1,7 @@
 #include <boiling-pot.h>
 #include <sensor-w1.h>
 #include <switch-mock.h>
+#include <display-led-stripe.h>
 #include <sysfs-switch.h>
 
 #include <iostream>
@@ -37,9 +38,23 @@ int main(int argc, char** argv)
         switcH = std::make_unique<SysFSGPIOSwitch>(gpio);
     else
         switcH = std::make_unique<StdOutSwitch>();
+    
+    SysFSGPIOSwitch sw1(26);
+    SysFSGPIOSwitch sw2(19);
+    SysFSGPIOSwitch sw3(13);
+    SysFSGPIOSwitch sw4(6);
+    SysFSGPIOSwitch sw5(5);
+    SysFSGPIOSwitch sw6(0);
+    SysFSGPIOSwitch sw7(11);
+    SysFSGPIOSwitch sw8(9);
+    SysFSGPIOSwitch sw9(10);
+    SysFSGPIOSwitch sw10(22);
 
+    std::vector<Switch*> leds{&sw1,&sw2,&sw3,&sw4,&sw5,&sw6,&sw7,&sw8,&sw9,&sw10};
 
-    BoilingPot pot(&sensor, switcH.get(), /*reporter*/nullptr, /*reporter*/nullptr);
+    LEDStripeDisplay display(leds);
+
+    BoilingPot pot(&sensor, switcH.get(), /*reporter*/nullptr, &display);
 
     pot.heat(37.5);
 
