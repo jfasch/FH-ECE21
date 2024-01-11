@@ -2,6 +2,7 @@
 
 #include <data-logger.h>
 #include <string>
+#include <sensor-w1.h>
 #include <sensor-const.h>
 #include <sensor-mock.h>
 #include <sensor.h>
@@ -95,6 +96,25 @@ TEST_F(logger_suite, LoggerFileTest) {
     EXPECT_EQ(line, "36.4;36.5;36.6;");
 
     file.close();
+}
+
+TEST_F(logger_suite, LeggerCannotRead)
+{
+    SensorConfig cfg;
+    W1Sensor w1(".");
+
+    cfg.addSensor("Sensor1", &w1);
+
+
+    SinkMock sink;
+    DataLogger logger(&cfg, &sink, 1);
+
+    // round #1
+    logger.startLogging(1);
+
+    ASSERT_EQ(sink.size(), 1);
+
+    ASSERT_FLOAT_EQ(sink[0].getMeasurement("Cannot read .Sensor1"), -273);
 }
 
 // TEST_F(..., error_file_exists)

@@ -5,6 +5,7 @@
 #include <map>
 #include <stdexcept>  
 
+#define NULL_KELVIN -273
 /**
  * @class Sesnorconfig
  * @brief Hold all sensors which should be logged by the DataLogger class.
@@ -32,7 +33,16 @@ public:
         SensorValues measurements;
         for (auto [name, sensor]: _sensors)
         {
-            measurements.addMeasurement(name, sensor->get_temperature());
+            try
+            {
+                measurements.addMeasurement(name, sensor->get_temperature());              
+            }
+            catch (const std::exception& e)
+            {
+                e.what();
+                measurements.addMeasurement((e.what()) + name, NULL_KELVIN);         
+            }
+               
         }
         return measurements;
     }
