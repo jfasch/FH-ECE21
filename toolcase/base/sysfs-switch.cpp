@@ -1,18 +1,18 @@
 #include "sysfs-switch.h"
-
 #include <fcntl.h>
 #include <unistd.h>
 #include <cstring>
 #include <iostream>
 
-
-SysFSGPIOSwitch::SysFSGPIOSwitch(int gpioPin) : pinNumber(gpioPin)
+SysFSGPIOSwitch::SysFSGPIOSwitch(int gpioPin, bool actLow) : pinNumber(gpioPin), activeLow(actLow)
 {
-    exportGPIO();
+    exportGPIO(); //GPIO pins need to be exported before they can be used
     usleep(100000); // 0.1s sleep (assumed value that can be adjusted if necessary)
-    configureOutput();
+    configureOutput(); //pin is configured for output
 }
 
+//this is where the magic happens 
+//switch is toggled between 0 and 1 depending on input
 void SysFSGPIOSwitch::set_state(bool state)
 {
     std::string valueFilePath = "/sys/class/gpio/gpio" + std::to_string(pinNumber) + "/value";
@@ -30,6 +30,7 @@ void SysFSGPIOSwitch::set_state(bool state)
     }
 }
 
+//reads the current state of the switch
 bool SysFSGPIOSwitch::get_state()
 {
     std::string valueFilePath = "/sys/class/gpio/gpio" + std::to_string(pinNumber) + "/value";
@@ -50,12 +51,13 @@ bool SysFSGPIOSwitch::get_state()
     }
 }
 
-
+//unexports the GPIO pin (duh)
 SysFSGPIOSwitch::~SysFSGPIOSwitch()
 {
     unexportGPIO();
 }
 
+//the thing that does the exporting mentioned above
 void SysFSGPIOSwitch::exportGPIO()
 {
     const char *exportFilePath = "/sys/class/gpio/export";
@@ -71,13 +73,14 @@ void SysFSGPIOSwitch::exportGPIO()
     {
         perror("Failed to open GPIO export file");
     }
+
 }
 
+//configures pin for output
 void SysFSGPIOSwitch::configureOutput()
 {
     std::string directionFilePath = "/sys/class/gpio/gpio" + std::to_string(pinNumber) + "/direction";
     int directionFile = open(directionFilePath.c_str(), O_WRONLY);
-
     if (directionFile != -1)
     {
         const char *direction = "out";
@@ -88,8 +91,25 @@ void SysFSGPIOSwitch::configureOutput()
     {
         perror("Failed to open GPIO direction file");
     }
+
+    //Todo: Set Active low file (active_low) to high.
+    if(activeLow)
+    {
+        std::string activeLowFilePath = "/sys/class/gpio/gpio" + std::to_string(pinNumber) + "/active_low";
+        int activeLowFile = open(activeLowFilePath.c_str(), O_WRONLY);
+        if (activeLowFile != -1)
+        {
+            write(activeLowFile, "1", 1);
+            close(activeLowFile);
+        }
+        else
+        {
+            perror("Failed to open activeLow file");
+        }
+    }    
 }
 
+//after use, a GPIO pin should be unexported again (best practice)
 void SysFSGPIOSwitch::unexportGPIO()
 {
     const char *unexportFilePath = "/sys/class/gpio/unexport";

@@ -35,7 +35,7 @@ int main(int argc, char** argv)
     W1Sensor sensor{temperature_file};
     std::unique_ptr<Switch> switcH;
     if (gpio >= 0)
-        switcH = std::make_unique<SysFSGPIOSwitch>(gpio);
+        switcH = std::make_unique<SysFSGPIOSwitch>(gpio, true);
     else
         switcH = std::make_unique<StdOutSwitch>();
     
