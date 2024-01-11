@@ -1,7 +1,9 @@
 #include <sensor-const.h>
-#include <sensor-random.h>
+#include <sensor-w1.h>
 #include <sink-terminal.h>
 #include <data-logger.h>
+#include <MQTT_publisher.h>
+#include <sink-MQTT.h>
 
 #include <map>
 #include <iostream>
@@ -12,18 +14,17 @@ int main()
 {
     ConstantSensor bottom_left(37.5);
     ConstantSensor bottom_right(-273.15);
-    RandomSensor top_left(0, 666);
-    RandomSensor top_right(-273.15, 0);
+    W1Sensor potSensor(".");
 
     SensorConfig config;
-    config.addSensor("bl", &bottom_left);
-    config.addSensor("br", &bottom_right);
-    config.addSensor("tl", &top_left);
-    config.addSensor("tr", &top_right);
+    config.addSensor("BoilingPort", &potSensor);
     
-    SinkTerminal sink;
+    MQTTPublisher client("10.36.40.114", 1883, "fh-ece21");
+    SinkMQTT sink(client);
+
+    //SinkTerminal sink;
     DataLogger logger(&config, &sink, 1000/*ms*/);
-    logger.startLogging(5);
+    logger.startLogging(0);
 
     return 0;
 }
