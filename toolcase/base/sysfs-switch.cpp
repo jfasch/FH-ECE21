@@ -4,7 +4,7 @@
 #include <cstring>
 #include <iostream>
 
-SysFSGPIOSwitch::SysFSGPIOSwitch(int gpioPin, int actLow) : pinNumber(gpioPin), activeLow(actLow)
+SysFSGPIOSwitch::SysFSGPIOSwitch(int gpioPin, bool actLow) : pinNumber(gpioPin), activeLow(actLow)
 {
     exportGPIO(); //GPIO pins need to be exported before they can be used
     usleep(100000); // 0.1s sleep (assumed value that can be adjusted if necessary)
@@ -93,7 +93,7 @@ void SysFSGPIOSwitch::configureOutput()
     }
 
     //Todo: Set Active low file (active_low) to high.
-    if(activeLow == 1)
+    if(activeLow)
     {
         std::string activeLowFilePath = "/sys/class/gpio/gpio" + std::to_string(pinNumber) + "/active_low";
         int activeLowFile = open(activeLowFilePath.c_str(), O_WRONLY);
