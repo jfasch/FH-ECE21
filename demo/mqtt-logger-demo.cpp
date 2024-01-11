@@ -12,10 +12,11 @@
 
 int main()
 {
+    
     ConstantSensor bottom_left(37.5);
-    ConstantSensor bottom_right(-273.15);
-    RandomSensor top_left(0, 666);
-    RandomSensor top_right(-273.15, 0);
+    ConstantSensor bottom_right(69);
+    RandomSensor top_left(35, 45);
+    RandomSensor top_right(25, 55);
 
     SensorConfig config;
     config.addSensor("bl", &bottom_left);
@@ -23,10 +24,12 @@ int main()
     config.addSensor("tl", &top_left);
     config.addSensor("tr", &top_right);
     
-    MQTTPublisher client;
+    
+    MQTTPublisher client("10.36.40.114", 1883, "fh-ece21");
     SinkMQTT sink(client);
     DataLogger logger(&config, &sink, 1000/*ms*/);
-    logger.startLogging(5);
+    
+    logger.startLogging(0);
 
     return 0;
 }
