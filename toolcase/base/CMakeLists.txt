@@ -27,6 +27,12 @@ ADD_LIBRARY(
   pwm_controller.h
   pwm_controller.cpp
 
+  display-pwm-stripe.h
+  display-pwm-stripe.cpp
+
+  composite-display.h
+  composite-display.cpp
+
   MQTT.h    
   MQTT_mock.h
 )
