@@ -24,3 +24,4 @@ TEST(switch_mock_suite, set_on_off)
     sw.off();
     ASSERT_TRUE(sw.state() == MockSwitch::State::OFF);
 }
+
