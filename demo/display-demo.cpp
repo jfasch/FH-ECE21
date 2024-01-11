@@ -20,7 +20,7 @@ int main()
 	{
 		for(int j = k;j < 10;j++)
 		{
-			display[k].show_percentage(i);
+			display[k].show_percentage(i/100.0);
 			k++;
 			break;
 		}

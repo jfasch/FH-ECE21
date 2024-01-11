@@ -3,6 +3,9 @@
 #include <switch-mock.h>
 #include <display-led-stripe.h>
 #include <sysfs-switch.h>
+#include <pwm_controller.h>
+#include <display-pwm-stripe.h>
+#include <composite-display.h>
 
 #include <iostream>
 #include <memory>
@@ -52,11 +55,20 @@ int main(int argc, char** argv)
 
     std::vector<Switch*> leds{&sw1,&sw2,&sw3,&sw4,&sw5,&sw6,&sw7,&sw8,&sw9,&sw10};
 
-    LEDStripeDisplay display(leds);
+  
 
-    BoilingPot pot(&sensor, switcH.get(), /*reporter*/nullptr, &display);
+    LEDStripeDisplay display1(leds);
+    PWMStripeDisplay display2;
 
-    pot.heat(37.5);
+
+    std::vector<PercentageDisplay*> displays{&display1,&display2};
+
+    CompositeDisplay compositedisplay(displays);
+
+
+    BoilingPot pot(&sensor, switcH.get(), /*reporter*/nullptr, &compositedisplay);
+
+    pot.heat(55);
 
     while (true) {
         sleep(1);
