@@ -8,6 +8,7 @@
 #include <sink-file.h>
 #include <sink-MQTT.h>
 #include <MQTT_mock.h>
+#include <sink-composite.h>
 
 TEST(sink_suite, MockSinkTest)
 {
@@ -94,3 +95,48 @@ TEST(sink_suite, MQTTSinkTest)
     EXPECT_STREQ(msg1.c_str(), comp1.c_str());
     EXPECT_STREQ(msg2.c_str(), comp2.c_str());
 }
+
+TEST(sink_suite, SinkCompositeWithVariousSinksTest) {
+    SensorConfig cfg;
+    // ... sensor configuration ...
+
+    // Define column mapping for the file sink
+    std::vector<std::pair<std::string, std::string>> columnMapping = {
+        {"Sens1", "Sens1"},
+        {"Sen2", "Sen2"},
+        {"Sen3", "Sen3"}
+    };
+
+    const std::string testFileName = "test_output.csv";
+    auto fileSink = std::make_shared<SinkFile>(testFileName, columnMapping);
+    auto mockSink = std::make_shared<SinkMock>();
+
+    SinkComposite compositeSink;
+    compositeSink.addSink(fileSink);
+    compositeSink.addSink(mockSink);
+
+    // Populate SensorValues with test data
+    SensorValues values;
+    values.addMeasurement("Sens1", 20); // Test temperature value for Sens1
+    values.addMeasurement("Sen2", 23);  // Test temperature value for Sen2
+    values.addMeasurement("Sen3", 34);  // Test temperature value for Sen3
+
+    compositeSink.output(values);
+
+    // Verification for FileSink
+    std::ifstream file(testFileName);
+    ASSERT_TRUE(file.is_open());
+    std::string line;
+    std::getline(file, line); // Read the header line
+    std::getline(file, line); // Read the first data line
+    EXPECT_EQ(line, "20;23;34;"); // Check the contents of the data line
+    file.close();
+
+    // Verification for MockSink
+    ASSERT_GT(mockSink->size(), 0); // Check if mockSink received data
+}
+
+
+
+
+
