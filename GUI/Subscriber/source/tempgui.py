@@ -67,7 +67,7 @@ class MQTTSubscriber:
         # Set plot labels and legend
         self.ax.set_xlabel("Measurements")
         self.ax.set_ylabel("Temperature")
-        self.ax.set_ylim(20, 90)
+        self.ax.set_ylim(10, 90)
 
         self.canvas = FigureCanvasTkAgg(self.fig, master=self.master)
         self.canvas.get_tk_widget().grid(row=3, column=0, columnspan=6)
@@ -82,7 +82,7 @@ class MQTTSubscriber:
         self.play_music()
         
         # Load and display the video
-        video_path = "image.gif"  
+        video_path = "image.gif"  # Replace "video.mp4" with the path to your video file
         self.video = cv2.VideoCapture(video_path)
         self.success, self.frame = self.video.read()
         self.image_label = ttk.Label(self.master)
@@ -196,28 +196,16 @@ class MQTTSubscriber:
         self.ax.set_ylabel("Temperature")
         self.ax.legend(loc='lower left')
         # Set y-axis limits
-        self.ax.set_ylim(20, 90)
-
-
-        # Calculate and display average temperatures in a table
-        avg_frame = ttk.Frame(self.master)
-        avg_frame.grid(row=3, column=3, rowspan=3, padx=10, pady=10)
-
-        avg_label = ttk.Label(avg_frame, text="Average Temperatures")
-        avg_label.grid(row=0, column=0, columnspan=2, pady=5)
-
-        # Add headers
-        ttk.Label(avg_frame, text="Sensor").grid(row=1, column=0)
-        ttk.Label(avg_frame, text="Average Temperature").grid(row=1, column=1)
+        self.ax.set_ylim(10, 90)
 
         # Calculate averages
         averages = self.calculate_averages(data)
 
-        # Display averages in a table
-        for i, (sensor, avg_temp) in enumerate(averages.items()):
-            ttk.Label(avg_frame, text=sensor).grid(row=i + 2, column=0)
-            ttk.Label(avg_frame, text=f"{avg_temp:.2f} °C").grid(row=i + 2, column=1)
-
+        # Display averages as text
+        avg_text = "\n".join([f'{"Average Temperature of " + sensor_names[i]}: {avg_temp:.2f} °C' for sensor, avg_temp in averages.items()])        
+        self.ax.text(0.02, 0.98, avg_text, transform=self.ax.transAxes,
+                    verticalalignment='top', horizontalalignment='left',
+                    bbox=dict(boxstyle='round', facecolor='wheat', alpha=0.5))
 
         # Redraw the canvas
         self.canvas.draw()
