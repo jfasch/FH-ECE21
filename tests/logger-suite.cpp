@@ -8,6 +8,7 @@
 #include <sensor.h>
 #include <sensor-config.h>
 #include <sink-mock.h>
+#include <sink-composite.h>
 #include <filesystem>
 #include <sink-file.h>
 
