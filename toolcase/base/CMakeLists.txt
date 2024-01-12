@@ -15,6 +15,9 @@ ADD_LIBRARY(
   switch-mock.cpp
   switch.h
 
+  composite-switch.h
+  composite-switch.cpp
+  
   hysteresis.h
   hysteresis.cpp
 
