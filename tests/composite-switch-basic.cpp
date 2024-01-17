@@ -21,13 +21,13 @@ TEST(compositeSwitch_suite, basic)
     ASSERT_EQ(compositeS.size(), 3);
 
     compositeS.set_state(false);
-    ASSERT_TRUE(mock1->get_state() == false);
-    ASSERT_TRUE(mock2->get_state() == false);
-    ASSERT_TRUE(mock3->get_state() == false);
+    ASSERT_TRUE(mock1.get_state() == false);
+    ASSERT_TRUE(mock2.get_state() == false);
+    ASSERT_TRUE(mock3.get_state() == false);
 
     compositeS.set_state(true);
-    ASSERT_TRUE(mock1->get_state() == true);
-    ASSERT_TRUE(mock2->get_state() == true);
-    ASSERT_TRUE(mock3->get_state() == true);
+    ASSERT_TRUE(mock1.get_state() == true);
+    ASSERT_TRUE(mock2.get_state() == true);
+    ASSERT_TRUE(mock3.get_state() == true);
 
 }
